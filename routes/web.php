@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,7 @@ Route::get('/index', function () {
 });
 
 Route::get('/Dashboard', [DashboardController::class ,'index']);
+
+
+Route::get('/Kategory', [KategoryController::class ,'index'])->name('kategory.index');
+
