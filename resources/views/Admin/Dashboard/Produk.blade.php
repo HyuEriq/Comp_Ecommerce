@@ -144,8 +144,8 @@
         <div class="flex-none w-full max-w-full px-3">
           <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
             <div class="flex justify-between p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-              <h6 class="dark:text-white">Kategory table</h6>
-              <a class="py-2 px-5 bg-gradient-to-tl from-blue-500 to-violet-500 rounded-lg text-sm text-white" href=""> Tambah Category</a>
+              <h6 class="dark:text-white">Produk table</h6>
+              <a class="py-2 px-5 bg-gradient-to-tl from-blue-500 to-violet-500 rounded-lg text-sm text-white" href=""> Tambah produk</a>
             </div>
             <div class="flex-auto px-0 pt-0 pb-2">
               <div class="p-0 overflow-x-auto">
@@ -153,66 +153,34 @@
                   <thead class="align-bottom">
                     <tr>
                       <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">No</th>
+                      <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nama Produk</th>
                       <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nama Category</th>
-                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Slug</th>
+                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Harga</th>
+                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">qty</th>
                       <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                        <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                        <td class="py-4 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                             <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">1</p>
+                          </td>
+                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Personal Computer</p>
                           </td>
                           <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                             <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Computer</p>
                           </td>
                           <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Computer_slug</p>
-                          </td>
-                      <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <a href="javascript:;" class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"> Edit </a>
-                      </td>
-                    </tr>
-                    <tr>
-                        <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">1</p>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Computer</p>
+                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Rp 50.000.000</p>
                           </td>
                           <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Computer_slug</p>
+                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">7</p>
                           </td>
                       <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <a href="javascript:;" class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"> Edit </a>
-                      </td>
-                    </tr>
-                    <tr>
-                        <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">1</p>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Computer</p>
-                          </td>
-                          <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Computer_slug</p>
-                          </td>
-                      <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <a href="javascript:;" class="py-2 px-4 bg-blue-600 rounded-full text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"> Edit </a>
-                      </td>
-                    </tr>
-                    <tr>
-                        <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">1</p>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Computer</p>
-                          </td>
-                          <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Computer_slug</p>
-                          </td>
-                      <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <a href="javascript:;" class="text-xs font-semibold leading-tight dark:text-white dark:opacity-80 text-slate-400"> Edit </a>
+                        <a href="javascript:;" class=" py-2 px-6 bg-blue-600 rounded-lg  hover:bg-blue-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Edit</a>
+                        <a href="javascript:;" class=" py-2 px-6 bg-red-600 rounded-lg  hover:bg-red-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Delete</a>
+                        <a href="javascript:;" class=" py-2 px-6 bg-sky-600 rounded-lg  hover:bg-sky-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Details</a>
                       </td>
                     </tr>
                   </tbody>

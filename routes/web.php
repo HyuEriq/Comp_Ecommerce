@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoryController;
+use App\Http\Controllers\ProdukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +24,10 @@ Route::get('/index', function () {
     return view('index');
 });
 
-Route::get('/Dashboard', [DashboardController::class ,'index']);
+Route::get('/Dashboard', [DashboardController::class ,'index'])->name('Dashboard');
 
 
 Route::get('/Kategory', [KategoryController::class ,'index'])->name('kategory.index');
+
+Route::get('/Produk', [ProdukController::class , 'index'])->name('Produk.index');
 
