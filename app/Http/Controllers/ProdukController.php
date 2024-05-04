@@ -61,4 +61,8 @@ class ProdukController extends Controller
     {
         //
     }
+
+    public function Detail(){
+        return view('Admin.Dashboard.Detail');
+    }
 }

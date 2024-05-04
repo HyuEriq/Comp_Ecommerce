@@ -144,48 +144,30 @@
         <div class="flex-none w-full max-w-full px-3">
           <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
             <div class="flex justify-between p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-              <h6 class="dark:text-white">Produk table</h6>
-              <a class="py-2 px-5 bg-gradient-to-tl from-blue-500 to-violet-500 rounded-lg text-sm text-white" href=""> Tambah produk</a>
+              <h6 class="dark:text-white">Details Produk</h6>
             </div>
-            <div class="flex-auto px-0 pt-0 pb-2">
-              <div class="p-0 overflow-x-auto">
-                <table class="items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500">
-                  <thead class="align-bottom">
-                    <tr>
-                      <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">No</th>
-                      <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nama Produk</th>
-                      <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nama Category</th>
-                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Harga</th>
-                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">qty</th>
-                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                        <td class="py-4 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">1</p>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Personal Computer</p>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Computer</p>
-                          </td>
-                          <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Rp 50.000.000</p>
-                          </td>
-                          <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">7</p>
-                          </td>
-                      <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <a href="javascript:;" class=" py-2 px-6 bg-blue-600 rounded-lg  hover:bg-blue-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Edit</a>
-                        <a href="javascript:;" class=" py-2 px-6 bg-red-600 rounded-lg  hover:bg-red-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Delete</a>
-                        <a href="{{ route('Detail.Produk') }}" class=" py-2 px-6 bg-sky-600 rounded-lg  hover:bg-sky-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Details</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-5 px-7">
+                <div class="gambar">
+                    <div class="img h-80 w-full bg-slate-400 rounded-lg">
+                    </div>
+                    <p class="font-semibold text-slate-700 text-2xl pt-4">Headset Bluethoth</p>
+                </div>
+                <div class="list-diskripsi">
+                    <div>
+                        <h5>Category Produk</h5>
+                        <p class="text-base text-slate-700 ">Computer</p>
+                    </div>
+                    <div>
+                        <h5>Diskripsi Produk</h5>
+                        <p class="text-base text-slate-700 ">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit corporis in accusamus cum? In, omnis vero ut corporis earum est libero incidunt at voluptate, sapiente eum itaque ipsum tempore, dolor nam culpa aut unde obcaecati rerum voluptatem suscipit ratione quae? Magnam itaque, velit aliquam voluptas ab atque obcaecati quam!
+                        </p>
+                    </div>
+                    <div>
+                        <h5>Category Produk</h5>
+                        <p class="text-base text-slate-700 ">Computer</p>
+                    </div>
+                </div>
             </div>
           </div>
         </div>

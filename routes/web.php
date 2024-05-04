@@ -30,4 +30,5 @@ Route::get('/Dashboard', [DashboardController::class ,'index'])->name('Dashboard
 Route::get('/Kategory', [KategoryController::class ,'index'])->name('kategory.index');
 
 Route::get('/Produk', [ProdukController::class , 'index'])->name('Produk.index');
+Route::get('/detail', [ProdukController::class , 'Detail'])->name('Detail.Produk');
 
