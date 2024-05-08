@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class KategoryController extends Controller
+class HistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('Admin.Dashboard.Kategori.kategory');
+        return view('Admin.Dashboard.Histori.history');
     }
 
     /**

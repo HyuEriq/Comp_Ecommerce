@@ -11,7 +11,7 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        return view('Admin.Dashboard.Produk');
+        return view('Admin.Dashboard.Produk.Produk');
     }
 
     /**
@@ -63,6 +63,6 @@ class ProdukController extends Controller
     }
 
     public function Detail(){
-        return view('Admin.Dashboard.Detail');
+        return view('Admin.Dashboard.Produk.Detail');
     }
 }
