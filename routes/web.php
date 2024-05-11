@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\OrderanController;
 use App\Http\Controllers\KategoryController;
@@ -45,4 +47,8 @@ Route::get('/User', [UserController::class, 'index'])->name('User.index');
 Route::get('/history', [HistoryController::class, 'index'])->name('History.index');
 
 Route::get('/Profil', [ProfilController::class, 'index'])->name('Profil.index');
+
+Route::get('/About', [AboutController::class, 'index'])->name('About.index');
+
+Route::get('/Contact', [ContactController::class, 'index'])->name('Contact.index');
 

@@ -19,7 +19,7 @@
                                 <a class="text-white opacity-50" href="javascript:;">Pages</a>
                             </li>
                             <li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
-                                aria-current="page">Kategori Pproduk</li>
+                                aria-current="page">Kategori produk</li>
                         </ol>
                         <h6 class="mb-0 font-bold text-white capitalize">Kategori Produk</h6>
                     </nav>
@@ -59,6 +59,8 @@
                                     dropdown-trigger aria-expanded="false">
                                     <i class="cursor-pointer fa fa-bell"></i>
                                 </a>
+
+
 
                                 <ul dropdown-menu
                                     class="text-sm transform-dropdown before:font-awesome before:leading-default before:duration-350 before:ease lg:shadow-3xl duration-250 min-w-44 before:sm:right-8 before:text-5.5 pointer-events-none absolute right-0 top-0 z-50 origin-top list-none rounded-lg border-0 border-solid border-transparent dark:shadow-dark-xl dark:bg-slate-850 bg-white bg-clip-padding px-2 py-4 text-left text-slate-500 opacity-0 transition-all before:absolute before:right-2 before:left-auto before:top-0 before:z-50 before:inline-block before:font-normal before:text-white before:antialiased before:transition-all before:content-['\f0d8'] sm:-mr-6 lg:absolute lg:right-0 lg:left-auto lg:mt-2 lg:block lg:cursor-pointer">
@@ -146,6 +148,33 @@
                                     </li>
                                 </ul>
                             </li>
+                                <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                                    <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                                      <span class="sr-only">Open user menu</span>
+                                      <img class="w-7 h-7 rounded-full" src="{{ asset('img/logo.png') }}" alt="user photo">
+                                    </button>
+                                    <!-- Dropdown menu -->
+                                    <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+                                      <div class="px-4 py-3">
+                                        <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
+                                        <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                                      </div>
+                                      <ul class="py-2" aria-labelledby="user-menu-button">
+                                        <li>
+                                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                                        </li>
+                                        <li>
+                                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                                        </li>
+                                        <li>
+                                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+                                        </li>
+                                        <li>
+                                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                                        </li>
+                                      </ul>
+                                    </div>
+
                         </ul>
                     </div>
                 </div>
