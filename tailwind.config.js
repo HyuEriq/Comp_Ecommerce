@@ -7,11 +7,15 @@ export default {
     "./resources/**/*.vue",
     "./node_modules/flowbite/**/*.js"
   ],
+  daisyui: {
+    themes: [],
+  },
   theme: {
     extend: {},
   },
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
+    require('daisyui'),
   ],
 }
 

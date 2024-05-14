@@ -2,16 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class KategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Admin.Dashboard.Kategori.kategory');
+        $data = new Kategori;
+
+        if($request->has('search') && $request->search != ''){
+         $data->where('nama_kategori','LIKE','%'.$request->search.'%');
+        }
+
+        $data = $data->latest()->paginate(4);
+
+        return view('Admin.Dashboard.Kategori.kategory', [
+            'Kategori' => $data,
+            'request' => $request
+        ]);
     }
 
     /**
@@ -27,7 +42,16 @@ class KategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'nama_kategori' => 'required|min:3',
+
+        ]);
+
+        $data['slug'] = Str::slug($data['nama_kategori']);
+
+        Kategori::create($data);
+
+        return back()->with('success','Data Kategori Berhasil Di Tambah');
     }
 
     /**
@@ -43,7 +67,7 @@ class KategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
@@ -51,7 +75,15 @@ class KategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'nama_kategori' => 'required|min:3'
+        ]);
+
+        $data['slug'] = Str::slug($data['nama_kategori']);
+
+        Kategori::find($id)->update($data);
+
+        return back()->with('success','Data Kategori Berhasil Di Tambah');
     }
 
     /**
@@ -59,6 +91,8 @@ class KategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Kategori::find($id)->delete();
+
+        return back()->with('success', 'Data kategori Berhasil Di Hapus');
     }
 }

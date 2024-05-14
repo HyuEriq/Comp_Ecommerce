@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ContactController;
@@ -35,6 +36,9 @@ Route::get('/Dashboard', [DashboardController::class ,'index'])->name('Dashboard
 
 
 Route::get('/Kategory', [KategoryController::class ,'index'])->name('kategory.index');
+Route::post('/Kategory/Tambah', [KategoryController::class , 'store'])->name('Kategory.Store');
+Route::PUT('/Kategory/Update/{id}', [KategoryController::class , 'update'])->name('Kategory.Update');
+Route::DELETE('/Kategori/Delete/{id}', [KategoryController::class , 'destroy'])->name('Kategory.Destroy');
 
 Route::get('/Produk', [ProdukController::class , 'index'])->name('Produk.index');
 
@@ -52,3 +56,4 @@ Route::get('/About', [AboutController::class, 'index'])->name('About.index');
 
 Route::get('/Contact', [ContactController::class, 'index'])->name('Contact.index');
 
+Route::get('/Galeri', [GaleriController::class, 'index'])->name('Galeri.index');

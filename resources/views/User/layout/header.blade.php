@@ -13,7 +13,7 @@
                 <a href="/index"><li>Home</li></a>
                 <a href="{{ route('About.index') }}"><li>About As</li></a>
                 <a href="#"><li>Produk</li></a>
-                <li>Galeri</li>
+                <a href="{{ route('Galeri.index') }}"><li>Galeri</li></a>
                 <a href="{{ route('Contact.index') }}"><li>Contact</li></a>
             </ul>
             <div class="lg:flex hidden gap-10">

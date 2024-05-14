@@ -2,10 +2,9 @@
 
 @section('content')
 
-    <body
-        class="m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500">
-        <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
+@include('Admin.Dashboard.Kategori.update')
 
+@include('Admin.Dashboard.Kategori.delete')
 
         <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
             <!-- Navbar -->
@@ -192,6 +191,16 @@
                             class="flex justify-between p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                             <h6 class="dark:text-white">Kategory table</h6>
 
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
                             <div class="flex gap-3">
 
                                 <form class="max-w-md mx-auto">
@@ -206,16 +215,19 @@
                                                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                             </svg>
                                         </div>
-                                        <input type="search" id="default-search"
-                                            class="block w-96 py-2  ps-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="" required />
-                                        <button type="submit"
-                                            class="text-white absolute end-2.5 bottom-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                                        <form action="{{ route('kategory.index') }}" method="get">
+                                            <input type="search" id="default-search"
+                                                class="block w-96 py-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                placeholder="" name="search" value="{{ $request->search }}" />
+                                            <button type="submit"
+                                                class="text-white absolute end-2.5 bottom-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                                        </form>
                                     </div>
                                 </form>
 
-                                <a class="py-2 px-5 bg-gradient-to-tl from-blue-500 to-violet-500 rounded-lg text-sm text-white"
-                                href=""> Tambah Category</a>
+                                <button data-modal-target="crud-Tambah" data-modal-toggle="crud-Tambah" class="py-2 px-5 bg-gradient-to-tl from-blue-500 to-violet-500 rounded-lg text-sm text-white" type="button">
+                                    Tambah Category
+                                  </button>
 
                             </div>
 
@@ -229,49 +241,78 @@
                                             <th
                                                 class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                                 No</th>
+                                                <th
+                                                class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                Image</th>
                                             <th
+
                                                 class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                                 Nama Category</th>
                                             <th
                                                 class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                                 Slug</th>
+                                                <th
+                                                class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                created_at</th>
                                             <th
                                                 class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                                 Action</th>
                                         </tr>
                                     </thead>
+                                    @php
+                                        $counter = ($Kategori->currentPage() - 1) * $Kategori->perPage() + 1;
+                                    @endphp
+                                    @foreach ($Kategori as $key =>  $item )
+
                                     <tbody>
                                         <tr>
                                             <td
                                                 class="py-4 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                 <p
                                                     class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
-                                                    1</p>
+                                                    {{ $counter++ }}</p>
+                                            </td>
+                                            <td
+                                            class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                            <p
+                                                class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
+                                                {{ $item->image }}</p>
+                                        </td>
+                                            <td
+                                                class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                                <p
+                                                    class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
+                                                    {{ $item->nama_kategori }}</p>
                                             </td>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                 <p
                                                     class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
-                                                    Personal Computer</p>
+                                                    {{ $item->slug }}</p>
                                             </td>
                                             <td
-                                                class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                                                <p
-                                                    class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
-                                                    Computer</p>
-                                            </td>
+                                            class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                            <p
+                                                class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
+                                                {{ $item->created_at }}</p>
+                                        </td>
                                             <td
                                                 class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                                                <a href="javascript:;"
-                                                    class=" py-2 px-6 bg-blue-600 rounded-lg  hover:bg-blue-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80">
-                                                    Edit</a>
-                                                <a href="javascript:;"
-                                                    class=" py-2 px-6 bg-red-600 rounded-lg  hover:bg-red-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80">
-                                                    Delete</a>
+                                                <button type="button" onclick="my_modal_update{{ $key }}.showModal()" class="py-2 px-6 bg-blue-600 rounded-lg hover:bg-blue-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80">
+                                                    Edit
+                                                </button>
+                                                <button onclick="my_modal_delete{{ $key }}.showModal()" class=" py-2 px-6 bg-red-600 rounded-lg  hover:bg-red-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80" type="button">
+                                                    Delete
+                                                    </button>
                                             </td>
                                         </tr>
                                     </tbody>
+                                    @endforeach
+
                                 </table>
+                                <div class="mt-5">
+                                    {{ $Kategori->links('vendor.pagination.simple-tailwind') }}
+                                </div>
 
                                 <nav aria-label="Page navigation example" class="">
                                     <ul class="flex -space-x-px text-sm my-5 items-center justify-center ">
@@ -311,4 +352,12 @@
                     </div>
                 </div>
             </div>
+
+
+         @include('Admin.Dashboard.Kategori.Insert')
+
+
+
+
+
         @endsection
