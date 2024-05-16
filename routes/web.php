@@ -41,8 +41,13 @@ Route::PUT('/Kategory/Update/{id}', [KategoryController::class , 'update'])->nam
 Route::DELETE('/Kategori/Delete/{id}', [KategoryController::class , 'destroy'])->name('Kategory.Destroy');
 
 Route::get('/Produk', [ProdukController::class , 'index'])->name('Produk.index');
+Route::post('/Produk/Tambah', [ProdukController::class, 'store'])->name('Produk.Store');
+Route::PUT('/Produk/Update/{id}' , [ProdukController::class , 'update'])->name('Produk.update');
+Route::DELETE('/Produk/Delete/{id}', [ProdukController::class , 'destroy'])->name('Produk.Destroy');
+Route::get('/detail/{id}', [ProdukController::class , 'Detail'])->name('Detail.Produk');
 
-Route::get('/detail', [ProdukController::class , 'Detail'])->name('Detail.Produk');
+Route::get('Dashboard/About', [AboutController::class , 'About'])->name('About.Ds');
+Route::PUT('Dashboard/About/Update/{id}', [AboutController::class , 'update'])->name('About.Update');
 
 Route::get('/orderan', [OrderanController::class , 'Index'])->name('Orderan.index');
 

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class AboutController extends Controller
 {
@@ -11,15 +14,21 @@ class AboutController extends Controller
      */
     public function index()
     {
+
+
         return view('User.About');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function About()
     {
-        //
+        $data = About::get();
+
+        return view('Admin.Dashboard.About.About',[
+            'about' => $data
+        ]);
     }
 
     /**
@@ -43,7 +52,7 @@ class AboutController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
@@ -51,7 +60,21 @@ class AboutController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'tittle' => 'required|min:5',
+            'diskripsi' => 'required',
+            //'image'     => 'required|image|file|mimes:png,jpg,jpeg|min:2048'
+        ]);
+
+            //$file = $request->file('image');
+            //$filename = uniqid() .'.'. $file->getClientOriginalExtension();
+            //$file->storeAs('public/About/', $filename);
+
+            //$data[image] = $filename;
+
+            About::find($id)->update($data);
+
+            return back()->with('success','Data About Berhasil Di Update');
     }
 
     /**
