@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -9,9 +10,21 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Admin.Dashboard.User.User');
+
+        $data = User::query();
+
+        if($request->has('search') && $request->search != ''){
+            $data->where('name','LIKE','%'.$request->search.'%');
+           }
+
+        $data = $data->latest()->get();
+
+        return view('Admin.Dashboard.User.User',[
+            'Users' => $data,
+            'request' => $request
+        ]);
     }
 
     /**

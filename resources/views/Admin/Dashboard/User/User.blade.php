@@ -174,11 +174,13 @@
                                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
-                        <input type="search" id="default-search"
-                            class="block w-96 py-2  ps-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required />
-                        <button type="submit"
-                            class="text-white absolute end-2.5 bottom-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                        <form action="{{ route('User.index') }}" method="get">
+                            <input type="search" id="default-search"
+                                class="block w-96 py-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="" name="search" value="{{ $request->search }}" />
+                            <button type="submit"
+                                class="text-white absolute end-2.5 bottom-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                        </form>
                     </div>
                 </form>
 
@@ -199,19 +201,20 @@
                       <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Action</th>
                     </tr>
                   </thead>
+                  @foreach ($Users as $items )
                   <tbody>
                     <tr>
                         <td class="py-4 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">1</p>
+                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $loop->iteration }}</p>
                           </td>
                           <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">M Hyueoriq</p>
+                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $items->name }}</p>
                           </td>
                           <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Hueriq@gmail.com</p>
+                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $items->email }}</p>
                           </td>
                           <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">09-02-2024</p>
+                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $items->created_at }}</p>
                           </td>
                       <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                         <a href="javascript:;" class=" py-2 px-6 bg-blue-600 rounded-lg  hover:bg-blue-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Edit</a>
@@ -220,6 +223,8 @@
                       </td>
                     </tr>
                   </tbody>
+                  @endforeach
+
                 </table>
 
                 <nav aria-label="Page navigation example" class="">

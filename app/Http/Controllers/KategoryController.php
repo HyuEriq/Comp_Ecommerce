@@ -17,7 +17,7 @@ class KategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $data = new Kategori;
+        $data = Kategori::query();
 
         if($request->has('search') && $request->search != ''){
          $data->where('nama_kategori','LIKE','%'.$request->search.'%');
