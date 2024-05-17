@@ -204,21 +204,23 @@
                         </button>
                     </div>
                     @endif
+
+                    @if ($errors->any())
+                    <div class="alert alert-danger bg-red-500 mb-3">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="text-white">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                     <div
                         class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                         <div
                             class="flex justify-between p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                             <h6 class="dark:text-white">Kategory table</h6>
 
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+
 
                             <div class="flex gap-3">
 
@@ -294,9 +296,7 @@
                                             </td>
                                             <td
                                             class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                                            <p
-                                                class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
-                                                {{ $item->image }}</p>
+                                           <img src="{{ asset('storage/kategori/' . $item->image) }}" alt="" class="w-32 h-24">
                                         </td>
                                             <td
                                                 class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">

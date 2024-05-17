@@ -14,8 +14,6 @@ class AboutController extends Controller
      */
     public function index()
     {
-
-
         return view('User.About');
     }
 
@@ -63,9 +61,21 @@ class AboutController extends Controller
         $data = $request->validate([
             'tittle' => 'required|min:5',
             'diskripsi' => 'required',
-            //'image'     => 'required|image|file|mimes:png,jpg,jpeg|min:2048'
+            'image'     => 'image|file|mimes:png,jpg,jpeg'
         ]);
 
+            if($request->hasFile('image')){
+                $file = $request->file('image');
+                $filename = uniqid().'.'. $file->getClientOriginalExtension();
+
+                $file->storeAs('public/about/' . $filename);
+
+                Storage::delete(['public/about/'. $request->imageold]);
+
+                $data['image'] = $filename;
+            }else(
+                $data['image'] = $request->imageold
+            );
             //$file = $request->file('image');
             //$filename = uniqid() .'.'. $file->getClientOriginalExtension();
             //$file->storeAs('public/About/', $filename);

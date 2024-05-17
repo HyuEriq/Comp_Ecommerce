@@ -201,6 +201,16 @@
                     </div>
                     @endif
 
+                    @if ($errors->any())
+                    <div class="alert alert-danger bg-red-500 mb-3">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="text-white">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                     <div
                         class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                         <div
@@ -225,7 +235,7 @@
                                                 <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $loop->iteration }}</p>
                                               </td>
                                               <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                                                <img src="{{ asset('public/About/'. $items->image) }}" alt="" width="80px">
+                                                <img src="{{ asset('storage/about/'. $items->image) }}" alt="" width="80px">
                                               </td>
                                               <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                 <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $items->tittle }}</p>

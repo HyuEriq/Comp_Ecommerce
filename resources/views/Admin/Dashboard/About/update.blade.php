@@ -2,11 +2,11 @@
     <dialog id="my_modal_update{{ $key }}" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box bg-white">
             <form  action="{{ route('About.Update', $items->id) }}"  method="POST" class="w-full" enctype="multipart/form-data">
-            <h3 class="font-bold text-lg">Update Data Kategori</h3>
+            <h3 class="font-bold text-lg">Update Data About</h3>
                     @method('PUT')
                     @csrf
 
-                    <input type="hidden" name="oldImage" value="{{ $items->image }}">
+                    <input type="text" name="imageold" value="{{ $items->image }}">
                     <div class="">
                         <div class="">
                             <label for="name"
@@ -24,13 +24,13 @@
                                 placeholder="Type product name" required=""
                                 value="{{ old('diskripsi', $items->diskripsi) }}">
                         </div>
-                       <!-- <div class="col-span-2">
+                       <div class="col-span-2">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 for="user_avatar">Upload file</label>
                             <input
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 aria-describedby="user_avatar_help" id="user_avatar" type="file" name="image" value="{{ old('image', $items->image) }}">
-                        </div> -->
+                        </div>
                         <div class="flex gap-4 float-right mt-4">
                             <label for="closeModalKategori{{ $key }}" class="btn">Close</label>
 
@@ -42,7 +42,7 @@
                                         d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                Update Kategori
+                                Update About
                             </button>
                         </div>
                 </form>

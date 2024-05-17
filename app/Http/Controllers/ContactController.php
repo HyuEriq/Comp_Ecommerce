@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactModel;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -12,6 +13,13 @@ class ContactController extends Controller
     public function index()
     {
         return view('User.Contact');
+    }
+
+    public function view()
+    {
+        return view('Admin.Dashboard.contact.contact',[
+            'contact' => ContactModel::get()
+        ]);
     }
 
     /**
@@ -51,7 +59,15 @@ class ContactController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'email' => 'required',
+            'alamat' => 'required',
+            'nomer' => 'required'
+        ]);
+
+        ContactModel::find($id)->update($data);
+
+        return back()->with('success','Data Contact Berhasil di Update');
     }
 
     /**

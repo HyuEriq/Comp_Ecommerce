@@ -49,6 +49,9 @@ Route::get('/detail/{id}', [ProdukController::class , 'Detail'])->name('Detail.P
 Route::get('Dashboard/About', [AboutController::class , 'About'])->name('About.Ds');
 Route::PUT('Dashboard/About/Update/{id}', [AboutController::class , 'update'])->name('About.Update');
 
+Route::get('/Dashboard/Contact', [ContactController::class , 'view'])->name('Contact.View');
+Route::PUT('/Dashboard/Contact/Update/{id}' , [ContactController::class , 'update'])->name('Contact.Update');
+
 Route::get('/orderan', [OrderanController::class , 'Index'])->name('Orderan.index');
 
 Route::get('/User', [UserController::class, 'index'])->name('User.index');

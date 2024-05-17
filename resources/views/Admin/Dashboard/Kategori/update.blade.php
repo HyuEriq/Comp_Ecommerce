@@ -1,10 +1,11 @@
 @foreach ($Kategori as $key => $items)
     <dialog id="my_modal_update{{ $key }}" class="modal modal-bottom sm:modal-middle">
         <div class="modal-box bg-white">
-            <form  action="{{ route('Kategory.Update', $items->id) }}"  method="POST" class="w-full">
+            <form  action="{{ route('Kategory.Update', $items->id) }}"  method="POST" class="w-full" enctype="multipart/form-data">
             <h3 class="font-bold text-lg">Update Data Kategori</h3>
                     @method('PUT')
                     @csrf
+                    <input type="hidden" name="imageold" value="{{ $items->image }}">
                     <div class="">
                         <div class="">
                             <label for="name"
@@ -15,13 +16,13 @@
                                 placeholder="Type product name" required=""
                                 value="{{ old('nama_kategori', $items->nama_kategori) }}">
                         </div>
-                        <!--<div class="col-span-2">
+                        <div class="col-span-2">
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 for="user_avatar">Upload file</label>
                             <input
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 aria-describedby="user_avatar_help" id="user_avatar" type="file" name="image">
-                        </div> -->
+                        </div>
                         <div class="flex gap-4 float-right mt-4">
                             <label for="closeModalKategori{{ $key }}" class="btn">Close</label>
 

@@ -6,6 +6,8 @@ use App\Models\Kategori;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class KategoryController extends Controller
@@ -44,8 +46,16 @@ class KategoryController extends Controller
     {
         $data = $request->validate([
             'nama_kategori' => 'required|min:3',
-
+            'image' => 'required|image|file|mimes:png,jpg,jpeg'
         ]);
+
+        $file = $request->file('image');
+
+        $filename = uniqid().'.'. $file->getClientOriginalExtension();
+
+        $file->storeAs('public/kategori/' . $filename );
+
+        $data['image'] = $filename;
 
         $data['slug'] = Str::slug($data['nama_kategori']);
 
@@ -76,8 +86,23 @@ class KategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->validate([
-            'nama_kategori' => 'required|min:3'
+            'nama_kategori' => 'required|min:3',
+            'image' => 'image|file|mimes:png,jpg,jpeg'
         ]);
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+
+            $filename = uniqid().'.'. $file->getClientOriginalExtension();
+
+            $file->storeAs('public/kategori/' . $filename);
+
+            Storage::delete(['public/kategori/'. $request->imageold]);
+
+            $data['image'] = $filename;
+        }else{
+            $data['image'] = $request->imageold;
+        }
 
         $data['slug'] = Str::slug($data['nama_kategori']);
 
