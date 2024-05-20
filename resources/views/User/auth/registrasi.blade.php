@@ -28,6 +28,16 @@
                 </div>
                 @endif
 
+                @if ($errors->any())
+                <div class="alert alert-danger bg-red-500 mb-3">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-white">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
                 <form class="space-y-4 md:space-y-6" action="{{ route('Registrasi.Tambah') }}" method="POST">
                     @csrf
                     <div>

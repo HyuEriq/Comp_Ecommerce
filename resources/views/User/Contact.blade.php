@@ -3,15 +3,15 @@
 @section('isi')
 
 <section class="bg-white dark:bg-gray-900">
-    <div class="container mx-auto my-8">
+    <div class="container  my-8 pt-16 mx-4">
         <div>
-            <div class="title flex gap-2 mb-3">
+            <div class="title flex gap-2 mb-3  mx-4">
                 <p class="text-sm text-slate-400">Home /</p>
                 <p class="text-sm text-slate-400">About As</p>
             </div>
         </div>
 
-        <div class=" bg-blue-400 rounded-lg px-3 h-72 flex flex-col justify-center items-center">
+        <div class=" bg-blue-400 rounded-lg px-3 h-72 flex flex-col justify-center items-center mx-4">
             <p class="font-medium text-White dark:text-blue-400">Contact us</p>
 
             <h1 class="mt-2 text-xl font-semibold text-gray-800 md:text-3xl dark:text-white">Kami Ingin Mendengar Pendapat Anda</h1>
@@ -19,7 +19,8 @@
             <p class="mt-3 text-green-200 dark:text-gray-400">Ngobrol Dengan Karyawan Kami Yang Ramah.</p>
         </div>
 
-        <div class="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-3 sm:grid-cols-2 ">
+        <div class="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-3 sm:grid-cols-2  mx-4">
+            @foreach ($contact as $items )
             <div class="p-4 rounded-lg bg-blue-50 md:p-6 dark:bg-gray-800">
                 <span class="inline-block p-3 text-blue-500 rounded-lg bg-blue-100/80 dark:bg-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -27,9 +28,9 @@
                     </svg>
                 </span>
 
-                <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Chat to sales</h2>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Speak to our friendly team.</p>
-                <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">hello@merakiui.com</p>
+                <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Ngobrol ke penjualan</h2>
+                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Bicaralah dengan tim ramah kami.</p>
+                <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">{{ $items->email }}</p>
             </div>
 
             <div class="p-4 rounded-lg bg-blue-50 md:p-6 dark:bg-gray-800">
@@ -40,9 +41,9 @@
                     </svg>
                 </span>
 
-                <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Visit us</h2>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Visit our office HQ..</p>
-                <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">100 Smith Street Collingwood VIC 3066 AU</p>
+                <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Kunjungi kami</h2>
+                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Kunjungi Toko Pusat Kami..</p>
+                <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">{{ $items->alamat }}</p>
             </div>
 
             <div class="p-4 rounded-lg bg-blue-50 md:p-6 dark:bg-gray-800">
@@ -52,13 +53,14 @@
                     </svg>
                 </span>
 
-                <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Call us</h2>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Mon-Fri from 8am to 5pm.</p>
-                <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">+1 (555) 000-0000</p>
+                <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Hubungi kami</h2>
+                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Sabtu-Kamis dari jam 9 pagi sampai jam 10 malam.</p>
+                <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">{{ $items->nomer }}</p>
             </div>
+            @endforeach
         </div>
 
-        <img class="object-cover w-full h-64 mt-10 rounded-lg lg:h-96" src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=100" alt="">
+        <img class="object-cover w-full h-64 mt-10 rounded-lg lg:h-96  px-6" src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=100" alt="">
     </div>
 </section>
 

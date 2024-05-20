@@ -2,27 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContactModel;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class OrderUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('User.Contact',[
-            'tittle' => 'Contact Me',
-            'contact' => ContactModel::get()
-        ]);
-    }
-
-    public function view()
-    {
-        return view('Admin.Dashboard.contact.contact',[
-            'contact' => ContactModel::get(),
-            'tittle' => 'Contact'
+        return view('Admin.Dashboard.User.dashboard.OrderUser',[
+            'tittle' => 'Order User'
         ]);
     }
 
@@ -63,15 +53,7 @@ class ContactController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->validate([
-            'email' => 'required',
-            'alamat' => 'required',
-            'nomer' => 'required'
-        ]);
-
-        ContactModel::find($id)->update($data);
-
-        return back()->with('success','Data Contact Berhasil di Update');
+        //
     }
 
     /**

@@ -14,7 +14,10 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('User.About');
+        return view('User.About',[
+            'tittle' => 'About As',
+            'AboutAs' => About::get()
+        ]);
     }
 
     /**
@@ -25,7 +28,8 @@ class AboutController extends Controller
         $data = About::get();
 
         return view('Admin.Dashboard.About.About',[
-            'about' => $data
+            'about' => $data,
+            'tittle' => 'About As'
         ]);
     }
 

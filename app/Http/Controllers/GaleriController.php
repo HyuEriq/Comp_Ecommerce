@@ -11,7 +11,9 @@ class GaleriController extends Controller
      */
     public function index()
     {
-        return view('User.Galeri');
+        return view('User.Galeri',[
+            'tittle' => 'Galeri Me'
+        ]);
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -23,7 +25,8 @@ class UserController extends Controller
 
         return view('Admin.Dashboard.User.User',[
             'Users' => $data,
-            'request' => $request
+            'request' => $request,
+            'tittle' => 'Daftar User'
         ]);
     }
 
@@ -40,7 +43,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|min:4|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|max:255'
+        ]);
+
+        $data['password'] = Hash::make($request->password);
+
+        User::create($data);
+
+        return back()->with('success','Data User Berhasil Di Tambah');
     }
 
     /**
@@ -64,7 +77,20 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::find($id);
+        $data = $request->validate([
+            'name' => 'required|max:255|min:4',
+            'email' => ['email',Rule::unique('users', 'email')->ignore($user->id),
+            ],
+        ]);
+
+        $user->update($data, [
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+        ]);
+
+        return back()->with('success','Data User Berhasil Di Update');
     }
 
     /**
@@ -72,6 +98,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        user::find($id)->delete();
+
+        return back()->with('success','Data User Berhasil Di Hapus');
     }
 }

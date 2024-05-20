@@ -2,15 +2,15 @@
 
 @section('isi')
 
-<div class="container mx-auto my-8">
-    <div>
-        <div class="title flex gap-2 mb-3">
+<div class="container mx-auto pt-16">
+    <div class="mt-10 ">
+        <div class="title flex gap-2 mb-3 mx-4">
             <p class="text-sm text-slate-400">Home /</p>
             <p class="text-sm text-slate-400">Galeri</p>
         </div>
     </div>
 
-    <div class=" bg-blue-400 rounded-lg px-3 h-72 flex flex-col justify-center items-center">
+    <div class=" bg-blue-400 rounded-lg px-3 h-72 flex flex-col justify-center items-center mx-4">
         <div class=" bg-blue-400 rounded-lg px-3 h-72 flex flex-col justify-center items-center">
             <p class="text-center px-full text-4xl font-bold">Galeri Me</p>
             <p class="text-center px-full text-base font-normal">Lihat lah Galeri Kami Dengan Baik</p>
@@ -26,7 +26,7 @@
         <a href="" class="text-base border rounded-lg py-2 px-4 hover hover:border-red-600">Computer</a>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mx-4">
         <div>
             <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg" alt="">
         </div>

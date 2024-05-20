@@ -30,7 +30,8 @@ class ProdukController extends Controller
         return view('Admin.Dashboard.Produk.Produk', [
             'Produk' => $data,
             'kategori' => $kategori,
-            'request' => $request
+            'request' => $request,
+            'tittle' => 'Produk'
         ]);
     }
 

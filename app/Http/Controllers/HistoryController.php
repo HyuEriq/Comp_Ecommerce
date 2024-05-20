@@ -11,7 +11,9 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        return view('Admin.Dashboard.Histori.history');
+        return view('Admin.Dashboard.Histori.history',[
+            'tittle' => 'History Order Admin'
+        ]);
     }
 
     /**

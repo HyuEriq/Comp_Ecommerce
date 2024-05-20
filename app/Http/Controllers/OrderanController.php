@@ -11,7 +11,9 @@ class OrderanController extends Controller
      */
     public function index()
     {
-        return view('Admin.Dashboard.Orderan.orderan');
+        return view('Admin.Dashboard.Orderan.orderan',[
+            'tittle' => 'Orderan'
+        ]);
     }
 
     /**

@@ -27,7 +27,8 @@ class KategoryController extends Controller
 
         return view('Admin.Dashboard.Kategori.kategory', [
             'Kategori' => $data,
-            'request' => $request
+            'request' => $request,
+            'tittle' => 'Kategory'
         ]);
     }
 
@@ -116,7 +117,11 @@ class KategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        Kategori::find($id)->delete();
+        $data = Kategori::find($id);
+
+        Storage::delete('public/kategori' . $data->image);
+
+        $data->delete();
 
         return back()->with('success', 'Data kategori Berhasil Di Hapus');
     }

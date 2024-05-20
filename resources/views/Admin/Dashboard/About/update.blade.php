@@ -6,7 +6,7 @@
                     @method('PUT')
                     @csrf
 
-                    <input type="text" name="imageold" value="{{ $items->image }}">
+                    <input type="hidden" name="imageold" value="{{ $items->image }}">
                     <div class="">
                         <div class="">
                             <label for="name"
