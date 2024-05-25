@@ -118,39 +118,6 @@
     </div>
     <!--awal detail pengiriman -->
 
-    <div class="splide border" id="promo">
-        <div class="splide__track">
-            <ul class="splide__list gap-x-2">
-                @for ($i = 1; $i <= 5; $i++)
-                    <li class="splide__slide rounded-lg overflow-hidden  ">
-                        <img src="{{ asset('img/kategorione.jpg') }}" alt=""
-                            class="w-32 h-32 object-cover rounded-xl">
-                    </li>
-                @endfor
-            </ul>
-        </div>
-    </div>
-    @push('scripts')
-    <script>
-        var promo = new Splide('#promo', {
-            type: 'loop',
-            perPage: 3,
-            speed: 2000,
-            perMove: 1,
-            autoplay: true,
-            breakpoints: {
-                768: {
-                    perPage: 2,
-                },
-                1024: {
-                    perPage: 3,
-                }
-            },
-        });
-
-        promo.mount();
-    </script>
-    @endpush
     <!--awal kategory -->
     {{-- width : 244px --}}
     {{-- height : 160px --}}
@@ -222,39 +189,42 @@
         <!--Card 1 -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-4 py-3">
 
-            @for ($i = 0; $i < 10; $i++)
-            <div class="relative  overflow-hidden rounded-lg bg-white shadow-md">
+           @foreach ($produk as $items )
+           <div class="relative  overflow-hidden rounded-lg bg-white shadow-md">
+            <a href="{{ route('Show.Produk' , $items->id) }}">
+                <img class="h-43 rounded-t-lg object-cover"
+                    src="{{ asset('storage/produk/' . $items->foto_produk) }}"
+                    alt="product image" class=""/>
+            </a>
+            <div class="mt-4 px-5">
                 <a href="#">
-                    <img class="h-43 rounded-t-lg object-cover"
-                        src="https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
-                        alt="product image" />
+                    <h5 class="text-base pb-3 md:text-xl font-bold tracking-tight text-slate-900 ">{{ $items->nama_Produk }}</h5>
                 </a>
-                <div class="mt-4 px-5">
-                    <a href="#">
-                        <h5 class="text-base pb-3 md:text-xl font-semibold tracking-tight text-slate-900 ">Nike Air MX
-                            Super 5000</h5>
-                    </a>
-                    <div class="flex items-center justify-between">
-                        <p>
-                            <span class="text-base md:text-2xl font-bold text-slate-900">$249</span>
-                        </p>
-                        <a href="#"
-                            class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                <div class="flex items-center justify-between">
+                    <p>
+                        <span class="text-base md:text-lg font-bold text-slate-800">Rp. {{ $items->harga }}</span>
+                    </p>
+                    <form action="{{ route('Add.Shoping') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $items->id }}">
+                        <input type="hidden" name="qty" value="1" min="1">
+                        <button type="submit" class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                            Add cart</a>
-                    </div>
-                    <div>
-                        <p class="text-sm pt-2 md:text-base text-slate-500">12 Terjual</p>
-                    </div>
-
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        Add Cart
+                    </button>
+                    </form>
                 </div>
-            </div>
+                <div>
+                    <p class="text-sm pt-2 md:text-base text-slate-500 pb-4">{{ $items->jumlah_beli }} Terjual</p>
+                </div>
 
-            @endfor
+            </div>
+        </div>
+           @endforeach
 
         </div>
 

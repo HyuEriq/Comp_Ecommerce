@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -102,4 +103,15 @@ class UserController extends Controller
 
         return back()->with('success','Data User Berhasil Di Hapus');
     }
+
+    public function details(string $id)
+    {
+        $user = User::find($id);
+
+        return view('Admin.Dashboard.User.detail',[
+            'tittle' => 'Details User',
+            'user' => $user
+        ]);
+    }
+
 }

@@ -137,7 +137,8 @@ class ProdukController extends Controller
 
         $data = ProdukModel::with('Kategori')->find($id);
         return view('Admin.Dashboard.Produk.Detail',[
-            'Produk' => $data
+            'Produk' => $data,
+            'tittle' => 'Detail Produk'
         ]);
     }
 }

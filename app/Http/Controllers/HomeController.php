@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProdukModel;
 use App\Models\SliderModel;
+use App\Models\CartShopping;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -15,15 +18,25 @@ class HomeController extends Controller
         return view('User.Home',[
             'tittle' => 'Home',
             'slider' => SliderModel::get(),
+            'produk' => ProdukModel::get()
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function addcardshpping(Request $request)
     {
-        //
+
+        $user = Auth::user();
+
+         $cart = CartShopping::create([
+            'user_id' => $user->id,
+            'product_id' => $request->product_id,
+            'qty' => $request->qty,
+        ]);
+
+        return redirect()->route('Card.View')->with('success', 'Item added to cart successfully');
     }
 
     /**
@@ -64,5 +77,27 @@ class HomeController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function showproduk(Request $request, string $id){
+
+        $data = ProdukModel::with('Kategori')->find($id);
+
+        return view('User.ShowProduk',[
+            'produk' => $data
+        ]);
+    }
+
+    public function showadd(Request $request){
+        $user = Auth::user();
+
+        CartShopping::create([
+            'product_id' => $request->product_id,
+            'user_id' => $user->id,
+            'qty' => $request->qty
+        ]);
+
+        return redirect()->route('Card.View')->with('success','Produk Masuk Kranjnag ');
+
     }
 }

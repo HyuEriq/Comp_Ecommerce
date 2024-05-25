@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Produk', function (Blueprint $table) {
+        Schema::create('produk', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kategori_id')->constrained(
                 table: 'kategori', indexName: 'id'
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('jumlah_beli')->default(0);
             $table->integer('qty');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

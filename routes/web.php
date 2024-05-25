@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CekOutController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfilController;
@@ -40,8 +41,15 @@ Route::get('/', function () {
  //   return view('index');
 //});
 
-Route::get('index', [HomeController::class, 'index'])->name('Home.View');
+    Route::get('index', [HomeController::class, 'index'])->name('Home.View');
+    Route::get('/ShowProduk/{id}', [HomeController::class , 'showproduk'])->name('Show.Produk');
+    Route::post('/ShowProduk/AddChart', [HomeController::class, 'showadd'])->name('Show.Insert');
 
+    Route::get('/About', [AboutController::class, 'index'])->name('About.index');
+
+    Route::get('/Contact', [ContactController::class, 'index'])->name('Contact.index');
+
+    Route::get('/Galeri', [GaleriController::class, 'index'])->name('Galeri.index');
 
 Route::middleware('guest')->group(function () {
     //Login
@@ -52,11 +60,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/registrasi', [RegistrasiController::class , 'index'])->name('registrasi');
     Route::post('/registrasi/Tambah', [RegistrasiController::class , 'registrasi_proses'])->name('Registrasi.Tambah');
 
-    Route::get('/About', [AboutController::class, 'index'])->name('About.index');
 
-    Route::get('/Contact', [ContactController::class, 'index'])->name('Contact.index');
-
-    Route::get('/Galeri', [GaleriController::class, 'index'])->name('Galeri.index');
 
 
 });
@@ -67,6 +71,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/Historyorder/user', [HistoryOrderUserController::class , 'index'])->name('History.Order');
     Route::get('/OrderUser', [OrderUserController::class, 'index'])->name('Order.User');
     Route::get('/CardShopping' , [CardShoppingCOntroller::class , 'index'])->name('Card.View');
+    Route::get('/Cekout', [CekOutController::class , 'index'])->name('Cekout.Index');
+    Route::post('/addshopping', [HomeController::class , 'addcardshpping'])->name('Add.Shoping');
+
+    Route::get('/Profil', [ProfilController::class, 'index'])->name('Profil.index');
+    Route::PUT('Profil/Update/{id}', [ProfilController::class , 'update'])->name('Profil.Update');
 });
 
 
@@ -100,6 +109,7 @@ Route::middleware('admin')->group(function () {
     Route::POST('/User/Tambah', [UserController::class , 'store'])->name('User.Store');
     Route::DELETE('/User/Delete/{id}', [UserController::class, 'destroy'])->name('User.Destroy');
     Route::PUT('/User/Update/{id}', [UserController::class, 'update'])->name('User.Update');
+    Route::get('/User/details/{id}' , [UserController::class , 'details'])->name('User.Detail');
 
     Route::get('/history', [HistoryController::class, 'index'])->name('History.index');
 
@@ -109,7 +119,8 @@ Route::middleware('admin')->group(function () {
     Route::DELETE('/Slider/Delete/{id}' , [SliderController::class , 'destroy'])->name('Slider.Destroy');
     Route::PUT('/Slider/Update/{id}', [SliderController::class , 'update'])->name('Slider.Update');
 
-    Route::get('/Profil', [ProfilController::class, 'index'])->name('Profil.index');
+    Route::get('/Galeri', [GaleriController::class , 'viewgaleri'])->name('Galeri.View');
+    Route::POST('/Galeri/Tambah', [GaleriController::class , 'store'])->name('Galeri.Insert');
 
 });
 

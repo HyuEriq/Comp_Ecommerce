@@ -100,7 +100,7 @@
                       <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                         <button onclick="my_modal_update{{ $key }}.showModal()" class="py-2 px-6 bg-blue-600 rounded-lg  hover:bg-blue-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80" >Update</button>
                         <button onclick="my_modal_delete{{ $key }}.showModal()" class="py-2 px-6 bg-red-600 rounded-lg  hover:bg-red-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80">Delete</button>
-                        <a href="" class=" py-2 px-6 bg-sky-600 rounded-lg  hover:bg-sky-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Details</a>
+                        <a href="{{ route('User.Detail' ,$items->id) }}" class=" py-2 px-6 bg-sky-600 rounded-lg  hover:bg-sky-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Details</a>
                       </td>
                     </tr>
                   </tbody>
