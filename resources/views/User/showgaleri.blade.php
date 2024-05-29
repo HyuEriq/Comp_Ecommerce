@@ -17,12 +17,7 @@
         </div>
     </div>
 
-    <div class="galeri flex justify-center items-center my-10 gap-5">
-        @foreach ($kategori as $itemss )
-        <a href="{{ route('galeri.byKategori' ,$itemss->id) }}" class="text-base border rounded-lg py-2 px-4 hover hover:border-red-600">{{ $itemss->nama_kategori }}</a>
-        @endforeach
-    </div>
-
+    <h1 class="text-center text-2xl my-5">{{ $kategori->nama_kategori }}</h1>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-4">
         @foreach ($galeri as $items )
             <div>

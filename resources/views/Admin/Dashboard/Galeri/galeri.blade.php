@@ -81,7 +81,7 @@
                     <div class="p-0 overflow-x-auto">
                     <div class="grid grid-cols-4 gap-5 pb-48">
                         @foreach ($galeri as $key => $items )
-                        <div class="w-52 h-40 bg-cover group mx-4 mt-8">
+                        <div class="w-52 h-40 bg-cover group mx-4 my-8 ">
                             <div class="relative overflow-hidden">
                                 <img src="{{ asset('storage/galeri/' .$items->gambar_galeri) }}" alt="" class="h-full w-full rounded-lg">
                                 <div
@@ -89,7 +89,7 @@
                                     <p class="text-base text-white ">{{ $items->Kategori->nama_kategori }}</p>
                                     <div class="flex gap-2">
                                         <button onclick="my_modal_Update{{ $key }}.showModal()" class="bg-black text-white text-sm py-2 px-5 rounded-md">Update</button>
-                                        <button class="bg-red-600 text-white text-sm py-2 px-5 rounded-md">Delete</button>
+                                        <button onclick="my_modal_Delete{{ $key }}.showModal()" class="bg-red-600 text-white text-sm py-2 px-5 rounded-md">Delete</button>
                                     </div>
 
                                 </div>
@@ -106,5 +106,7 @@
     @include('Admin.Dashboard.Galeri.insert')
 
     @include('Admin.Dashboard.Galeri.update')
+
+    @include('Admin.Dashboard.Galeri.Delete')
 
 @endsection

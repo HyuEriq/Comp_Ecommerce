@@ -110,7 +110,7 @@ class ProdukController extends Controller
             $data['foto_produk'] = $filename;
 
         }else{
-            $data['foto_produk'] = $request->oldImage;
+            $data['foto_produk'] = $request->imageold;
         }
 
 

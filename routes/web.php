@@ -50,6 +50,7 @@ Route::get('/', function () {
     Route::get('/Contact', [ContactController::class, 'index'])->name('Contact.index');
 
     Route::get('/Galeri', [GaleriController::class, 'index'])->name('Galeri.index');
+    Route::get('/Galeri/Kategori/{id}', [GaleriController::class, 'viewkategori'])->name('galeri.byKategori');
 
 Route::middleware('guest')->group(function () {
     //Login
@@ -119,8 +120,10 @@ Route::middleware('admin')->group(function () {
     Route::DELETE('/Slider/Delete/{id}' , [SliderController::class , 'destroy'])->name('Slider.Destroy');
     Route::PUT('/Slider/Update/{id}', [SliderController::class , 'update'])->name('Slider.Update');
 
-    Route::get('/Galeri', [GaleriController::class , 'viewgaleri'])->name('Galeri.View');
+    Route::get('/Galeri/View', [GaleriController::class , 'viewgaleri'])->name('Galeri.View');
     Route::POST('/Galeri/Tambah', [GaleriController::class , 'store'])->name('Galeri.Insert');
+    Route::PUT('/Galeri/Update/{id}', [GaleriController::class , 'update'])->name('Galeri.Update');
+    Route::DELETE('/Galeri/Delete/{id}', [GaleriController::class , 'destroy'])->name('Galeri.Destroy');
 
 });
 

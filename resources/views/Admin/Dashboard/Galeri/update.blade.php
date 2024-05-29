@@ -1,18 +1,23 @@
 @foreach ($galeri as $key => $items )
 <dialog id="my_modal_Update{{ $key }}" class="modal modal-bottom sm:modal-middle">
     <div class="modal-box bg-white">
-        <form  action="{{ route('Galeri.Insert' , $items->id) }}"  method="POST" class="w-full" enctype="multipart/form-data">
+        <form  action="{{ route('Galeri.Update' , $items->id) }}"  method="POST" class="w-full" enctype="multipart/form-data">
         <h3 class="font-bold text-lg">Update Data Galeri</h3>
+            @method('PUT')
                 @csrf
+                <input type="hidden" name="gambarlama" value="{{ $items->gambar_galeri }}">
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
                         <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Katagori</label>
                         <select id="countries" name="kategori_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="">---- Pilih ----</option>
+
                             @foreach ($kategori as $kategories )
-                            <option value="{{ $kategories->id }}" {{ $items->id == $kategories->id ? 'selected' : '' }}>
-                                {{ $kategories->nama_kategori }}
-                            </option>
+                                @if ($items->kategori_id == $kategories->id)
+                                    <option value="{{ $kategories->id }}" selected> {{ $kategories->nama_kategori }}</option>
+                                @else
+                                    <option value="{{ $kategories->id }}">{{ $kategories->nama_kategori }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>

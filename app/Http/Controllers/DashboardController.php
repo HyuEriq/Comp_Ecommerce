@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\ProdukModel;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,8 +13,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $jumlah_user = User::count();
+        $jumlah_produk = ProdukModel::count();
+        $jumlah_beli = ProdukModel::totalterjual();
         return view('Admin.Dashboard.dashboard',[
-            'tittle' => 'Dashboard'
+            'tittle' => 'Dashboard',
+            'jumlah_user' => $jumlah_user,
+            'jumlah_produk' => $jumlah_produk,
+            'jumlah_beli' => $jumlah_beli
         ]);
     }
 

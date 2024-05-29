@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Kategori;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class GaleriModel extends Model
 {
@@ -18,6 +19,5 @@ class GaleriModel extends Model
     public function Kategori(){
 
        return $this->belongsTo(Kategori::class);
-
     }
 }

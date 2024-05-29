@@ -7,31 +7,37 @@
                   <span class="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white">Bentaru.Com</span>
               </a>
           </div>
-          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 mb-2">
               <div>
-                  <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Resources</h2>
+                  <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Home</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                      <li class="mb-4">
-                          <a href="https://flowbite.com/" class="hover:underline text-white">Flowbite</a>
+                      <li class="">
+                          <a href="" class="hover:underline">About As</a>
                       </li>
                       <li>
-                          <a href="https://tailwindcss.com/" class="hover:underline text-white">Tailwind CSS</a>
+                          <a href="" class="hover:underline ">Produk</a>
+                      </li>
+                      <li>
+                        <a href="" class="hover:underline ">Galeri</a>
+                    </li>
+                      <li>
+                        <a href="" class="hover:underline">Contact</a>
+                    </li>
+                  </ul>
+              </div>
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Follow us</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <a href="" class="hover:underline ">Instagram</a>
+                      </li>
+                      <li>
+                          <a href="" class="hover:underline">Tiktok</a>
                       </li>
                   </ul>
               </div>
               <div>
-                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
-                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                      <li class="mb-4">
-                          <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
-                      </li>
-                      <li>
-                          <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
-                      </li>
-                  </ul>
-              </div>
-              <div>
-                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                  <h2 class="mb-6 text-sm font-semibold  text-white uppercase dark:text-white">Legal</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
                       <li class="mb-4">
                           <a href="#" class="hover:underline">Privacy Policy</a>

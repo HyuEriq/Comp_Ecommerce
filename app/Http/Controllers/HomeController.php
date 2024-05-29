@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\ProdukModel;
 use App\Models\SliderModel;
 use App\Models\CartShopping;
@@ -15,10 +16,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $terlaris = ProdukModel::ProdukTerlaris();
+        $kategori = Kategori::paginate(8);
+
         return view('User.Home',[
             'tittle' => 'Home',
             'slider' => SliderModel::get(),
-            'produk' => ProdukModel::get()
+            'produk' => ProdukModel::latest()->get(),
+            'terlaris' => $terlaris,
+            'kategori' => $kategori
         ]);
     }
 
@@ -80,6 +86,7 @@ class HomeController extends Controller
     }
 
     public function showproduk(Request $request, string $id){
+
 
         $data = ProdukModel::with('Kategori')->find($id);
 

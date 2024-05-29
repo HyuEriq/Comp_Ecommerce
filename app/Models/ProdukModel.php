@@ -21,4 +21,16 @@ class ProdukModel extends Model
     {
         return $this->belongsTo(Kategori::class);
     }
+
+    public static function ProdukTerlaris()
+    {
+        return self::orderBy('jumlah_beli', 'desc')
+                    ->take(10)
+                    ->get();
+    }
+
+    public static function totalterjual()
+    {
+        return self::sum('jumlah_beli');
+    }
 }

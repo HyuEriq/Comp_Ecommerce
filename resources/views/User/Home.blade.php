@@ -142,36 +142,16 @@
             </div>
         </div>
         <div class="kategori grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="kategorione relative">
-                <img src="img/kategorione.jpg" alt="" class=" object-cover h-40 w-full rounded-lg">
-                <div class="absolute top-0 z-10 p-4">
-                    <h1>Laptop Baru & New Berkualitas</h1>
-                    <button class="py-[2px] px-[4px] md:py-1 md:px-2 outline outline-red-800 rounded-full mt-2">View By
-                        Category</button>
+            @foreach ($kategori as $kategories)
+                <div class="kategorione relative">
+                    <img src="{{ asset('storage/kategori/' . $kategories->image) }}" alt="" class=" object-cover h-40 w-full rounded-lg">
+                    <div class="absolute top-0 z-10 p-4">
+                        <h1 class="text-bold text-white ">{{ $kategories->nama_kategori }}</h1>
+                        <button class="py-[1px] px-[2px] text-sm md:py-1 md:px-2 outline outline-green-100 rounded-full mt-2 text-white">View By
+                            Category</button>
+                    </div>
                 </div>
-            </div>
-            <div class="kategorione relative">
-                <img src="img/kategorione.jpg" alt="" class="object-cover h-40 w-full rounded-lg">
-                <div class="absolute top-0 z-10 p-4">
-                    <h1>Laptop Baru & New Berkualitas</h1>
-                    <button class="py-1 px-2 outline outline-red-800 rounded-full mt-2">View By Category</button>
-                </div>
-            </div>
-            <div class="kategorione relative">
-                <img src="img/kategorione.jpg" alt="" class="object-cover h-40 w-full rounded-lg">
-                <div class="absolute top-0 z-10 p-4">
-                    <h1>Laptop Baru & New Berkualitas</h1>
-                    <button class="py-1 px-2 outline outline-red-800 rounded-full mt-2">View By Category</button>
-                </div>
-            </div>
-            <div class="kategorione relative">
-                <img src="img/kategorione.jpg" alt="" class="object-cover h-40 w-full rounded-lg">
-                <div class="absolute top-0 z-10 p-4">
-                    <h1>Laptop Baru & New Berkualitas</h1>
-                    <button class="py-1 px-2 outline outline-red-800 rounded-full mt-2">View By Category</button>
-                </div>
-            </div>
-        </div>
+            @endforeach
     </div>
     <!--awal kategory -->
 
@@ -187,9 +167,9 @@
             </div>
         </div>
         <!--Card 1 -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-4 py-3">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-3">
 
-           @foreach ($produk as $items )
+           @foreach ($terlaris as $items )
            <div class="relative  overflow-hidden rounded-lg bg-white shadow-md">
             <a href="{{ route('Show.Produk' , $items->id) }}">
                 <img class="h-43 rounded-t-lg object-cover"
@@ -202,7 +182,7 @@
                 </a>
                 <div class="flex items-center justify-between">
                     <p>
-                        <span class="text-base md:text-lg font-bold text-slate-800">Rp. {{ $items->harga }}</span>
+                        <span class="text-base md:text-lg font-bold text-slate-800">Rp. {{ number_format($items->harga, 0,',','.') }}</span>
                     </p>
                     <form action="{{ route('Add.Shoping') }}" method="POST">
                         @csrf
@@ -219,7 +199,7 @@
                     </form>
                 </div>
                 <div>
-                    <p class="text-sm pt-2 md:text-base text-slate-500 pb-4">{{ $items->jumlah_beli }} Terjual</p>
+                    <p class="text-sm pt-2 md:text-base text-slate-500 pb-3">{{ $items->jumlah_beli }} Terjual</p>
                 </div>
 
             </div>
@@ -246,21 +226,20 @@
         </div>
         <!--Card 1 -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-4 py-3">
-            @for ($i = 0; $i < 10; $i++)
+         @foreach ($produk as $produks )
             <div class="relative  overflow-hidden rounded-lg bg-white shadow-md">
                 <a href="#">
                     <img class="h-43 rounded-t-lg object-cover"
-                        src="https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+                        src="{{ asset('storage/produk/' . $produks->foto_produk) }}"
                         alt="product image" />
                 </a>
                 <div class="mt-4 px-5">
                     <a href="#">
-                        <h5 class="text-base pb-3 md:text-xl font-semibold tracking-tight text-slate-900 ">Nike Air MX
-                            Super 5000</h5>
+                        <h5 class="text-base pb-3 md:text-xl font-semibold tracking-tight text-slate-900 ">{{ $produks->nama_Produk }}</h5>
                     </a>
                     <div class="flex items-center justify-between">
                         <p>
-                            <span class="text-base md:text-2xl font-bold text-slate-900">$249</span>
+                            <span class="text-base md:text-lg font-bold text-slate-900">Rp. {{ number_format($produks->harga, 0,',','.') }}</span>
                         </p>
                         <a href="#"
                             class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
@@ -272,13 +251,13 @@
                             Add cart</a>
                     </div>
                     <div>
-                        <p class="text-sm pt-2 md:text-base text-slate-500">12 Terjual</p>
+                        <p class="text-sm pt-2 md:text-base text-slate-500 mb-3">{{ $produks->jumlah_beli }} Terjual</p>
                     </div>
 
                 </div>
             </div>
+            @endforeach
 
-            @endfor
         </div>
      </div>
     @endsection
