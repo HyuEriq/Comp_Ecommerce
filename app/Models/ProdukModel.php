@@ -25,7 +25,7 @@ class ProdukModel extends Model
     public static function ProdukTerlaris()
     {
         return self::orderBy('jumlah_beli', 'desc')
-                    ->take(10)
+                    ->take(8)
                     ->get();
     }
 

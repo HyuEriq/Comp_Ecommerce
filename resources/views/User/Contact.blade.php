@@ -3,7 +3,7 @@
 @section('isi')
 
 <section class="bg-white dark:bg-gray-900">
-    <div class="container  my-8 pt-16 mx-4">
+    <div class="container  my-8 pt-16 mx-auto">
         <div>
             <div class="title flex gap-2 mb-3  mx-4">
                 <p class="text-sm text-slate-400">Home /</p>
@@ -60,7 +60,7 @@
             @endforeach
         </div>
 
-        <img class="object-cover w-full h-64 mt-10 rounded-lg lg:h-96  px-6" src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=100" alt="">
+        <img class="object-cover w-full h-64 mt-10 rounded-xl lg:h-96  px-6" src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=100" alt="">
     </div>
 </section>
 

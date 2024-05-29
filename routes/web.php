@@ -20,6 +20,7 @@ use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\CardShoppingCOntroller;
 use App\Http\Controllers\auth\RegistrasiController;
 use App\Http\Controllers\HistoryOrderUserController;
+use App\Http\Controllers\ProdukUserController;
 
 
 /*
@@ -46,6 +47,8 @@ Route::get('/', function () {
     Route::post('/ShowProduk/AddChart', [HomeController::class, 'showadd'])->name('Show.Insert');
 
     Route::get('/About', [AboutController::class, 'index'])->name('About.index');
+
+    Route::get('/Produk/User', [ProdukUserController::class, 'index'])->name('produk.user');
 
     Route::get('/Contact', [ContactController::class, 'index'])->name('Contact.index');
 

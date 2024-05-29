@@ -22,7 +22,7 @@ class HomeController extends Controller
         return view('User.Home',[
             'tittle' => 'Home',
             'slider' => SliderModel::get(),
-            'produk' => ProdukModel::latest()->get(),
+            'produk' => ProdukModel::latest()->paginate(8),
             'terlaris' => $terlaris,
             'kategori' => $kategori
         ]);

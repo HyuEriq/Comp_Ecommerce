@@ -24,7 +24,6 @@ class RegistrasiController extends Controller
           'password' => 'required|min:5|max:255',
       ]);
 
-
       $data['password'] = Hash::make($request->password);
 
       $proses = User::create([

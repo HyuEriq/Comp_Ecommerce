@@ -2,7 +2,7 @@
 
 @section('isi')
     <!--awal carausel -->
-    <div class="container mx-auto pt-16">
+    {{-- <div class="container mx-auto pt-16">
         <div id="controls-carousel" class="relative w-full " data-carousel="static">
             <!-- Carousel wrapper -->
             <div class="relative h-[250px] w-full overflow-hidden md:h-[600px] ">
@@ -54,8 +54,32 @@
                 </span>
             </button>
         </div>
-    </div>
+    </div> --}}
     <!--akhir carausel -->
+    {{-- @dd($slider) --}}
+    <div id="default-carousel" class="relative w-full h-screen" data-carousel="slide">
+
+        <!-- Carousel wrapper -->
+        <div class="relative overflow-hidden h-screen">
+            <!-- Item -->
+            @foreach ($slider as $item)
+                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <img src="{{ asset('storage/slider/'.$item->gambar_slider) }}" class="h-screen w-full object-cover" alt="...">
+                </div>
+            @endforeach
+
+
+        </div>
+        <!-- Slider indicators -->
+        <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+            @foreach ($slider as $key =>  $item)
+
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="true"
+                data-carousel-slide-to="{{ $key }}"></button>
+            @endforeach
+
+        </div>
+    </div>
 
     <!--awal detail pengiriman -->
     <div class="container px-3 my-7 md:mx-auto  md:my-24">
@@ -70,8 +94,8 @@
                     </svg>
                 </div>
                 <div class="text text-wrap">
-                    <p>Gratis Ongkir</p>
-                    <p>Pada Pembelian Berakhir Rp. 500.000</p>
+                    <p class="text-lg text-bold">Gratis Ongkir</p>
+                    <p class="text-base text-slate-500">Pada Pembelian Berakhir Rp. 500.000</p>
                 </div>
             </div>
             <div class="pengiriman flex gap-3 items-center">
@@ -83,8 +107,8 @@
                     </svg>
                 </div>
                 <div class="text">
-                    <p>Uang Kembali</p>
-                    <p>Pengembalian Terakhir 30 hari</p>
+                    <p class="text-lg text-bold">Uang Kembali</p>
+                    <p class="text-base text-slate-500">Pengembalian Terakhir 30 hari</p>
                 </div>
             </div>
             <div class="pengiriman flex gap-3 items-center">
@@ -97,8 +121,8 @@
                     </svg>
                 </div>
                 <div class="text">
-                    <p>Dukungan Online</p>
-                    <p>24/7 Dukungan Teknis</p>
+                    <p class="text-lg text-bold">Dukungan Online</p>
+                    <p class="text-base text-slate-500">24/7 Dukungan Teknis</p>
                 </div>
             </div>
             <div class="pengiriman flex gap-3 items-center">
@@ -110,8 +134,8 @@
                     </svg>
                 </div>
                 <div class="text">
-                    <p>Pembayaran Aman</p>
-                    <p>semua Kartu Di Terima</p>
+                    <p class="text-lg text-bold">Pembayaran Aman</p>
+                    <p class="text-base text-slate-500">semua Kartu Di Terima</p>
                 </div>
             </div>
         </div>
@@ -157,7 +181,7 @@
 
     <!--Produk Terlaris -->
     <div class="container mx-auto md:my-20">
-        <div class="flex justify-between items-center px-4 ">
+        <div class="flex justify-between items-center ">
             <div class="kiri">
                 <p class="text-xl font-bold ">Produk Terlaris</p>
                 <p class="text-base">Produk Yang berkualitas dan terbaik</p>
