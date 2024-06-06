@@ -17,14 +17,16 @@ class HomeController extends Controller
     public function index()
     {
         $terlaris = ProdukModel::ProdukTerlaris();
-        $kategori = Kategori::paginate(8);
+        $kategori = Kategori::get();
+        $terpopuler = ProdukModel::Produkterpopuler();
 
         return view('User.Home',[
             'tittle' => 'Home',
             'slider' => SliderModel::get(),
             'produk' => ProdukModel::latest()->paginate(8),
             'terlaris' => $terlaris,
-            'kategori' => $kategori
+            'kategori' => $kategori,
+            'populer' => $terpopuler
         ]);
     }
 
@@ -107,4 +109,12 @@ class HomeController extends Controller
         return redirect()->route('Card.View')->with('success','Produk Masuk Kranjnag ');
 
     }
+
+    // public function KategoriShow($id){
+    //     $produk = ProdukModel::with('Kategori')->find($id);
+
+    //     return view('User.produk',[
+    //         'produk' => $produk
+    //     ]);
+    // }
 }

@@ -22,7 +22,7 @@ class UserController extends Controller
             $data->where('name','LIKE','%'.$request->search.'%');
            }
 
-        $data = $data->latest()->get();
+        $data = $data->latest()->paginate(2);
 
         return view('Admin.Dashboard.User.User',[
             'Users' => $data,
@@ -47,12 +47,33 @@ class UserController extends Controller
         $data = $request->validate([
             'name' => 'required|min:4|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|max:255'
+            'password' => 'required|min:8|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'Alamat' => 'nullable',
+            'no_hp' => 'nullable'
         ]);
+
+        if ($request->hasFile('image')) {
+            // Simpan gambar yang diunggah
+            $file = $request->file('image');
+            $filename = uniqid(). '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/user/' . $filename);
+
+            $data['image'] = $filename;
+        } else {
+            // Gunakan gambar default jika tidak ada gambar yang diunggah
+            $data['image'] = 'defaul.png';
+        }
 
         $data['password'] = Hash::make($request->password);
 
-        User::create($data);
+        User::create($data,[
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'password' => $request->password,
+            'image' => $request->image,
+        ]);
 
         return back()->with('success','Data User Berhasil Di Tambah');
     }

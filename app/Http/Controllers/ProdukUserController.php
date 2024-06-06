@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\ProdukModel;
 use Illuminate\Http\Request;
 
 class ProdukUserController extends Controller
@@ -13,9 +14,22 @@ class ProdukUserController extends Controller
     public function index()
     {
         $kategori = Kategori::get();
+
+        if(request('kategori') == 'terlaris'){
+            $produk = ProdukModel::orderBy('jumlah_beli', 'DESC');
+        }elseif(request('kategori_id') != null){
+            $produk = ProdukModel::where('kategori_id', request('kategori_id'));
+        }elseif (request('produk') == 'populer') {
+            $produk = ProdukModel::orderBy('jumlah_lihat', 'DESC');
+        }
+        else{
+            $produk = ProdukModel::latest();
+        }
+
         return view('User.produk',[
             'tittle' => 'Halaman Produk',
-            'kategori' => $kategori
+            'kategori' => $kategori,
+            'produk' => $produk->paginate(8)
         ]);
     }
 

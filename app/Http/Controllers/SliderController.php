@@ -20,7 +20,7 @@ class SliderController extends Controller
     {
      return view('Admin.Dashboard.Slider.Slider',[
         'tittle' => 'Slider',
-        'slider' => SliderModel::get()
+        'slider' => SliderModel::paginate(1)
      ]);
     }
     /**

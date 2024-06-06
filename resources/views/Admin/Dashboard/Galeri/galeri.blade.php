@@ -62,10 +62,10 @@
                                             stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                     </svg>
                                 </div>
-                                <form action="" method="get">
+                                <form action="{{ route('Galeri.View') }}" method="get">
                                     <input type="search" id="default-search"
                                         class="block w-96 py-2 ps-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="" name="search" value="" />
+                                        placeholder="" name="search" value="{{ $request->search }}" />
                                     <button type="submit"
                                         class="text-white absolute end-2.5 bottom-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                                 </form>
@@ -79,25 +79,34 @@
                 </div>
                 <div class="flex-auto px-0 pt-0 pb-2">
                     <div class="p-0 overflow-x-auto">
-                    <div class="grid grid-cols-4 gap-5 pb-48">
-                        @foreach ($galeri as $key => $items )
-                        <div class="w-52 h-40 bg-cover group mx-4 my-8 ">
-                            <div class="relative overflow-hidden">
-                                <img src="{{ asset('storage/galeri/' .$items->gambar_galeri) }}" alt="" class="h-full w-full rounded-lg">
-                                <div
-                                    class="absolute w-full h-full bg-black/20 flex flex-col items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg gap-2">
-                                    <p class="text-base text-white ">{{ $items->Kategori->nama_kategori }}</p>
-                                    <div class="flex gap-2">
-                                        <button onclick="my_modal_Update{{ $key }}.showModal()" class="bg-black text-white text-sm py-2 px-5 rounded-md">Update</button>
-                                        <button onclick="my_modal_Delete{{ $key }}.showModal()" class="bg-red-600 text-white text-sm py-2 px-5 rounded-md">Delete</button>
-                                    </div>
+                        <div class="grid grid-cols-4 gap-5 pb-5">
+                            @foreach ($galeri as $key => $items)
+                                <div class="w-7[260px] bg-cover group mx-4 my-4 ">
+                                    <div class="relative overflow-hidden">
+                                        <img src="{{ asset('storage/galeri/' . $items->gambar_galeri) }}" alt=""
+                                            class="h-full w-full rounded-lg">
+                                        <div
+                                            class="absolute w-full h-full bg-black/20 flex flex-col items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-lg gap-2">
+                                            @if ($items->Kategori)
+                                                <p class="text-base text-white">{{ $items->Kategori->nama_kategori }}</p>
+                                            @endif
+                                            <div class="flex gap-2">
+                                                <button onclick="my_modal_Update{{ $key }}.showModal()"
+                                                    class="bg-black text-white text-sm py-2 px-5 rounded-md">Update</button>
+                                                <button onclick="my_modal_Delete{{ $key }}.showModal()"
+                                                    class="bg-red-600 text-white text-sm py-2 px-5 rounded-md">Delete</button>
+                                            </div>
 
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                        @endforeach
                     </div>
-                    </div>
+                </div>
+
+                <div class="my-5 mx-4">
+                    {{ $galeri->links('pagination::simple-tailwind') }}
                 </div>
             </div>
         </div>

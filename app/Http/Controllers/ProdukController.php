@@ -25,7 +25,7 @@ class ProdukController extends Controller
             });
         }
 
-        $data = $data->with('kategori')->latest()->get(); // <-- Ini hanya memanggil relasi, tapi tidak menyimpan perubahannya
+        $data = $data->with('kategori')->latest()->paginate(10); // <-- Ini hanya memanggil relasi, tapi tidak menyimpan perubahannya
 
         return view('Admin.Dashboard.Produk.Produk', [
             'Produk' => $data,

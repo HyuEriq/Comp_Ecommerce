@@ -29,6 +29,12 @@ class ProdukModel extends Model
                     ->get();
     }
 
+    public static function Produkterpopuler(){
+        return self::orderby('jumlah_lihat', 'desc')
+                    ->take(8)
+                    ->get();
+    }
+
     public static function totalterjual()
     {
         return self::sum('jumlah_beli');

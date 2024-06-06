@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('image')->default('fp.png');
             $table->enum('role', ['client','admin']);
             $table->bigInteger('no_hp')->nullable();
-            $table->text('alamat')->nullable();
+            $table->text('Alamat')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

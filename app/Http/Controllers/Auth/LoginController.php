@@ -33,7 +33,7 @@ class LoginController extends Controller
 
         }
 
-        return back()->with('LoginError', 'Login Failed!');
+        return back()->with('LoginError', 'Email Dan Password Anda Salah');
     }
 
     public function logout(Request $request)

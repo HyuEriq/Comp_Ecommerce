@@ -14,19 +14,40 @@ class GaleriController extends Controller
      */
     public function index()
     {
+
+        $data = Kategori::get();
+
+        if(request('galeri') != null){
+            $galeri = GaleriModel::where('kategori_id', request('galeri'));
+        }else{
+            $galeri = GaleriModel::latest();
+        }
+
         return view('User.Galeri',[
             'tittle' => 'Galeri Me',
-            'galeri' => GaleriModel::latest()->get(),
-            'kategori' => Kategori::get(),
+            'galeri' => $galeri->paginate(8),
+            'kategori' => $data
         ]);
     }
 
 
-    public function viewgaleri(){
+    public function viewgaleri(Request $request){
+
+        $query = GaleriModel::with('Kategori');
+
+        if ($request->has('search') && $request->search != '') {
+            $query->whereHas('Kategori', function($q) use ($request) {
+                $q->where('nama_kategori', 'LIKE', '%' . $request->search . '%');
+            });
+        }
+
+        $galeri = $query->paginate(6);
+
         return view('Admin.Dashboard.Galeri.galeri',[
             'tittle' => 'Galeri Admin',
             'kategori' => Kategori::get(),
-            'galeri' => GaleriModel::with('Kategori')->get()
+            'galeri' => $galeri,
+            'request' => $request
         ]);
     }
 
@@ -83,7 +104,7 @@ class GaleriController extends Controller
     {
         $data = $request->validate([
             'kategori_id' => 'required',
-            'gambar_galeri' => 'required|image|file|mimes:png,jpg,jpeg'
+            'gambar_galeri' => 'image|file|mimes:png,jpg,jpeg'
         ]);
 
         if($request->hasFile('gambar_galeri')){

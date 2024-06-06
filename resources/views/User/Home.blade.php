@@ -64,7 +64,8 @@
             <!-- Item -->
             @foreach ($slider as $item)
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('storage/slider/'.$item->gambar_slider) }}" class="h-screen w-full object-cover" alt="...">
+                    <img src="{{ asset('storage/slider/' . $item->gambar_slider) }}" class="h-screen w-full object-cover"
+                        alt="...">
                 </div>
             @endforeach
 
@@ -72,10 +73,9 @@
         </div>
         <!-- Slider indicators -->
         <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
-            @foreach ($slider as $key =>  $item)
-
-            <button type="button" class="w-3 h-3 rounded-full" aria-current="true"
-                data-carousel-slide-to="{{ $key }}"></button>
+            @foreach ($slider as $key => $item)
+                <button type="button" class="w-3 h-3 rounded-full" aria-current="true"
+                    data-carousel-slide-to="{{ $key }}"></button>
             @endforeach
 
         </div>
@@ -146,7 +146,7 @@
     {{-- width : 244px --}}
     {{-- height : 160px --}}
     <div class="container mx-auto px-3 mt-7  mb-16 md:my-24">
-        <div class="flex justify-between items-center mt-5">
+        <div class="flex justify-between items-center mt-5 mx-3">
             <p class="font-bold text-xl mb-8">Kategori Produk</p>
             <div class="flex gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"
@@ -165,75 +165,116 @@
                 </svg>
             </div>
         </div>
-        <div class="kategori grid grid-cols-2 md:grid-cols-4 gap-4">
-            @foreach ($kategori as $kategories)
-                <div class="kategorione relative">
-                    <img src="{{ asset('storage/kategori/' . $kategories->image) }}" alt="" class=" object-cover h-40 w-full rounded-lg">
-                    <div class="absolute top-0 z-10 p-4">
-                        <h1 class="text-bold text-white ">{{ $kategories->nama_kategori }}</h1>
-                        <button class="py-[1px] px-[2px] text-sm md:py-1 md:px-2 outline outline-green-100 rounded-full mt-2 text-white">View By
-                            Category</button>
+        <div class="splide" id="promo">
+            <div class="splide__track h-[400px]">
+                <ul class="splide__list gap-x-2">
+                    @foreach ($kategori->chunk(2) as $chunkedCategories)
+                        <li class="kategorione relative splide__slide">
+                            @foreach ($chunkedCategories as $kategories)
+                                <div class="relative mb-4">
+                                    <img src="{{ asset('storage/kategori/' . $kategories->image) }}" alt="" class="object-cover h-40 w-full rounded-lg">
+                                    <div class="absolute top-0 z-10 p-4">
+                                        <h1 class="font-bold text-white mb-3">{{ $kategories->nama_kategori }}</h1>
+                                        <a href="{{ route('produk.user', ['kategori_id' => $kategories->id]) }}" class="py-[1px] px-[2px] text-sm md:py-1 md:px-2 outline outline-green-100 rounded-full mt-2 text-white">
+                                            View By Category
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
+        {{-- Other sections of the page --}}
+
+        @push('scripts')
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var promo = new Splide('#promo', {
+                        type: 'loop',
+                        perPage: 4,  // adjust per page as needed
+                        perMove: 1,
+                        gap: '1rem',
+                        breakpoints: {
+                            768: {
+                                perPage: 2,
+                            },
+                            1024: {
+                                perPage: 2,
+                            },
+                            1440: {
+                                perPage: 3,
+                            },
+                        },
+                    }).mount();
+                });
+            </script>
+        @endpush
+        <!--awal kategory -->
+
+        <!--Produk Terlaris -->
+        <div class="container mx-auto md:my-20">
+            <div class="flex justify-between items-center ">
+                <div class="kiri">
+                    <p class="text-xl font-bold ">Produk Terlaris</p>
+                    <p class="text-base">Produk Yang berkualitas dan terbaik</p>
+                </div>
+                <div class="kanan">
+                    <a href="{{ route('produk.user', ['kategori' => 'terlaris']) }}">View All</a>
+                </div>
+            </div>
+            <!--Card 1 -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-3">
+
+                @foreach ($terlaris as $items)
+                    <div class="relative  overflow-hidden rounded-lg bg-white shadow-md">
+                        <a href="{{ route('Show.Produk', $items->id) }}">
+                            <img class="h-43 rounded-t-lg object-cover"
+                                src="{{ asset('storage/produk/' . $items->foto_produk) }}" alt="product image"
+                                class="" />
+                        </a>
+                        <div class="mt-4 px-5">
+                            <a href="#">
+                                <h5 class="text-base pb-3 md:text-xl font-bold tracking-tight text-slate-900 ">
+                                    {{ $items->nama_Produk }}</h5>
+                            </a>
+                            <div class="flex items-center justify-between">
+                                <p>
+                                    <span class="text-base md:text-lg font-bold text-slate-800">Rp.
+                                        {{ number_format($items->harga, 0, ',', '.') }}</span>
+                                </p>
+                                <form action="{{ route('Add.Shoping') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $items->id }}">
+                                    <input type="hidden" name="qty" value="1" min="1">
+                                    <button type="submit"
+                                        class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                        </svg>
+                                        Add Cart
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="flex justify-between gap-3">
+                                <p class="text-sm pt-2 md:text-base text-slate-500 mb-3">{{ $items->jumlah_beli }} Terjual
+                                </p>
+                                <p class="text-sm pt-2 md:text-base text-slate-500 mb-3">{{ $items->jumlah_lihat }}x View
+                                </p>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-            @endforeach
-    </div>
-    <!--awal kategory -->
-
-    <!--Produk Terlaris -->
-    <div class="container mx-auto md:my-20">
-        <div class="flex justify-between items-center ">
-            <div class="kiri">
-                <p class="text-xl font-bold ">Produk Terlaris</p>
-                <p class="text-base">Produk Yang berkualitas dan terbaik</p>
-            </div>
-            <div class="kanan">
-                <a href="#">View All</a>
-            </div>
-        </div>
-        <!--Card 1 -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-3">
-
-           @foreach ($terlaris as $items )
-           <div class="relative  overflow-hidden rounded-lg bg-white shadow-md">
-            <a href="{{ route('Show.Produk' , $items->id) }}">
-                <img class="h-43 rounded-t-lg object-cover"
-                    src="{{ asset('storage/produk/' . $items->foto_produk) }}"
-                    alt="product image" class=""/>
-            </a>
-            <div class="mt-4 px-5">
-                <a href="#">
-                    <h5 class="text-base pb-3 md:text-xl font-bold tracking-tight text-slate-900 ">{{ $items->nama_Produk }}</h5>
-                </a>
-                <div class="flex items-center justify-between">
-                    <p>
-                        <span class="text-base md:text-lg font-bold text-slate-800">Rp. {{ number_format($items->harga, 0,',','.') }}</span>
-                    </p>
-                    <form action="{{ route('Add.Shoping') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="product_id" value="{{ $items->id }}">
-                        <input type="hidden" name="qty" value="1" min="1">
-                        <button type="submit" class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        Add Cart
-                    </button>
-                    </form>
-                </div>
-                <div>
-                    <p class="text-sm pt-2 md:text-base text-slate-500 pb-3">{{ $items->jumlah_beli }} Terjual</p>
-                </div>
+                @endforeach
 
             </div>
+
+
         </div>
-           @endforeach
-
-        </div>
-
-
-    </div>
     </div>
     <!--end terlaris-->
 
@@ -245,43 +286,96 @@
                 <p class="text-base">Produk Yang terbaru di posting</p>
             </div>
             <div class="kanan">
-                <a href="#">View All</a>
+                <a href="{{ route('produk.user') }}">View All</a>
             </div>
         </div>
         <!--Card 1 -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-4 py-3">
-         @foreach ($produk as $produks )
-            <div class="relative  overflow-hidden rounded-lg bg-white shadow-md">
-                <a href="#">
-                    <img class="h-43 rounded-t-lg object-cover"
-                        src="{{ asset('storage/produk/' . $produks->foto_produk) }}"
-                        alt="product image" />
-                </a>
-                <div class="mt-4 px-5">
+            @foreach ($produk as $produks)
+                <div class="relative  overflow-hidden rounded-lg bg-white shadow-md">
                     <a href="#">
-                        <h5 class="text-base pb-3 md:text-xl font-semibold tracking-tight text-slate-900 ">{{ $produks->nama_Produk }}</h5>
+                        <img class="h-43 rounded-t-lg object-cover"
+                            src="{{ asset('storage/produk/' . $produks->foto_produk) }}" alt="product image" />
                     </a>
-                    <div class="flex items-center justify-between">
-                        <p>
-                            <span class="text-base md:text-lg font-bold text-slate-900">Rp. {{ number_format($produks->harga, 0,',','.') }}</span>
-                        </p>
-                        <a href="#"
-                            class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                            Add cart</a>
-                    </div>
-                    <div>
-                        <p class="text-sm pt-2 md:text-base text-slate-500 mb-3">{{ $produks->jumlah_beli }} Terjual</p>
-                    </div>
+                    <div class="mt-4 px-5">
+                        <a href="#">
+                            <h5 class="text-base pb-3 md:text-xl font-semibold tracking-tight text-slate-900 ">
+                                {{ $produks->nama_Produk }}</h5>
+                        </a>
+                        <div class="flex items-center justify-between">
+                            <p>
+                                <span class="text-base md:text-lg font-bold text-slate-900">Rp.
+                                    {{ number_format($produks->harga, 0, ',', '.') }}</span>
+                            </p>
+                            <a href="#"
+                                class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Add cart</a>
+                        </div>
+                        <div>
+                            <p class="text-sm pt-2 md:text-base text-slate-500 mb-3">{{ $produks->jumlah_beli }} Terjual
+                            </p>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
             @endforeach
 
         </div>
-     </div>
-    @endsection
+    </div>
+
+    <div class="container mx-auto md:my-20">
+        <div class="flex justify-between items-center px-4 ">
+            <div class="kiri">
+                <p class="text-xl font-bold ">Produk Terpopuler</p>
+                <p class="text-base">Produk Yang terbaru di posting</p>
+            </div>
+            <div class="kanan">
+                <a href="{{ route('produk.user', ['produk' => 'populer']) }}">View All</a>
+            </div>
+        </div>
+        <!--Card 1 -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-4 py-3">
+            @foreach ($populer as $produks)
+                <div class="relative  overflow-hidden rounded-lg bg-white shadow-md">
+                    <a href="#">
+                        <img class="h-43 rounded-t-lg object-cover"
+                            src="{{ asset('storage/produk/' . $produks->foto_produk) }}" alt="product image" />
+                    </a>
+                    <div class="mt-4 px-5">
+                        <a href="#">
+                            <h5 class="text-base pb-3 md:text-xl font-semibold tracking-tight text-slate-900 ">
+                                {{ $produks->nama_Produk }}</h5>
+                        </a>
+                        <div class="flex items-center justify-between">
+                            <p>
+                                <span class="text-base md:text-lg font-bold text-slate-900">Rp.
+                                    {{ number_format($produks->harga, 0, ',', '.') }}</span>
+                            </p>
+                            <a href="#"
+                                class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Add cart</a>
+                        </div>
+                        <div class="flex justify-between gap-3">
+                            <p class="text-sm pt-2 md:text-base text-slate-500 mb-3">{{ $produks->jumlah_beli }} Terjual
+                            </p>
+                            <p class="text-sm pt-2 md:text-base text-slate-500 mb-3">{{ $produks->jumlah_lihat }}x View
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+@endsection

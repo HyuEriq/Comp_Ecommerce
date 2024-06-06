@@ -45,6 +45,7 @@ Route::get('/', function () {
     Route::get('index', [HomeController::class, 'index'])->name('Home.View');
     Route::get('/ShowProduk/{id}', [HomeController::class , 'showproduk'])->name('Show.Produk');
     Route::post('/ShowProduk/AddChart', [HomeController::class, 'showadd'])->name('Show.Insert');
+    //Route::get('/Kategorishow/{id}', [HomeController::class , 'KategoriShow'])->name('Show.Kategori');
 
     Route::get('/About', [AboutController::class, 'index'])->name('About.index');
 
@@ -53,7 +54,7 @@ Route::get('/', function () {
     Route::get('/Contact', [ContactController::class, 'index'])->name('Contact.index');
 
     Route::get('/Galeri', [GaleriController::class, 'index'])->name('Galeri.index');
-    Route::get('/Galeri/Kategori/{id}', [GaleriController::class, 'viewkategori'])->name('galeri.byKategori');
+    //Route::get('/Galeri/Kategori/{id}', [GaleriController::class, 'viewkategori'])->name('galeri.byKategori');
 
 Route::middleware('guest')->group(function () {
     //Login
