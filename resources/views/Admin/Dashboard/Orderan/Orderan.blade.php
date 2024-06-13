@@ -11,7 +11,7 @@
               <h6 class="dark:text-white">Orderan table</h6>
               <div class="flex gap-3">
 
-                <form class="max-w-md mx-auto">
+                <form action="{{ route('Orderan.index') }}" method="GET" class="max-w-md mx-auto">
                     <label for="default-search"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                     <div class="relative">
@@ -25,11 +25,22 @@
                         </div>
                         <input type="search" id="default-search"
                             class="block w-96 py-2  ps-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required />
+                            placeholder="" name="search" value="{{ $request->search }}" required />
                         <button type="submit"
                             class="text-white absolute end-2.5 bottom-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                     </div>
                 </form>
+
+                <form action="{{ route('Orderan.index') }}" method="GET" class="max-w-sm mx-auto flex gap-3">
+                    <select id="countries" name="status"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option selected>Pilih Status</option>
+                      <option value="proses" {{ Request::get('status') == 'proses' ? 'selected' : '' }}>Di Proses</option>
+                      <option value="dikirim" {{ Request::get('status') == 'dikirim' ? 'selected' : '' }}>Di Kirim</option>
+                      <option value="selesai" {{ Request::get('status') == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                    </select>
+
+                    <button type="submit" class="py-2 px-5 bg-gradient-to-tl from-blue-500 to-violet-500 rounded-lg text-sm text-white">filter</button>
+                  </form>
 
             </div>
             </div>
@@ -39,49 +50,59 @@
                   <thead class="align-bottom">
                     <tr>
                       <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">No</th>
-                      <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nama</th>
-                      <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nama Produk</th>
                       <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Invoice</th>
-                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Jumlah</th>
-                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Harga</th>
-                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Tanggal</th>
+                      <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Gambar Produk</th>
+                      <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nama Produk</th>
+                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nama Pembeli</th>
+                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Alamat</th>
+                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Qty</th>
+                      <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">total</th>
                       <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Status</th>
                       <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Action</th>
                     </tr>
                   </thead>
+
+                  @foreach ($datahistory as $key => $items )
                   <tbody>
-                    <tr>
-                        <td class="py-4 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">1</p>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">M Hyueriq</p>
-                          </td>
-                          <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Computer core i3</p>
-                          </td>
-                          <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">9848487478</p>
-                          </td>
-                          <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">2</p>
-                          </td>
-                          <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Rp. 5.000.000</p>
-                          </td>
-                          <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">17-12-2024</p>
-                          </td>
-                          <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                            <p class="mb-0 text-sm font-semibold leading-normal border py-1 px-3 border-gray-500 rounded-full text-center dark:text-white dark:opacity-60">Proccess</p>
-                          </td>
-                      <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <a href="javascript:;" class=" py-2 px-6 bg-blue-600 rounded-lg  hover:bg-blue-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Edit</a>
-                        <a href="javascript:;" class=" py-2 px-6 bg-red-600 rounded-lg  hover:bg-red-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Delete</a>
-                        <a href="" class=" py-2 px-6 bg-sky-600 rounded-lg  hover:bg-sky-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Details</a>
-                      </td>
-                    </tr>
+                      <tr>
+                          <td class="py-4 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                              <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">1</p>
+                            </td>
+                            <td class="py-4 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">788789787</p>
+                              </td>
+                            <td class="py-4 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                               <img src="{{ asset('storage/produk/' . $items->Produk->foto_produk) }}" alt="" class="w-[100px]">
+                            </td>
+                            <td class="py-4 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $items->Produk->nama_Produk }}</p>
+                              </td>
+                            {{-- <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                              <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ Auth()->User()->username }}</p>
+                            </td> --}}
+                            <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                              <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $items->nama_lengkap }}</p>
+                            </td>
+                            <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                              <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $items->alamat }}</p>
+                            </td>
+                            <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                              <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $items->jumlah }}</p>
+                            </td>
+                            <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                              <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Rp {{ number_format($items->total, 0,',','.') }}</p>
+                            </td>
+                            <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">{{ $items->status }}</p>
+                              </td>
+                        <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                          <a href="javascript:;" class=" py-2 px-6 bg-blue-600 rounded-lg  hover:bg-blue-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Edit</a>
+                          <a href="javascript:;" class=" py-2 px-6 bg-red-600 rounded-lg  hover:bg-red-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Delete</a>
+                          <a href="" class=" py-2 px-6 bg-sky-600 rounded-lg  hover:bg-sky-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Details</a>
+                        </td>
+                      </tr>
                   </tbody>
+                  @endforeach
                 </table>
 
                 <nav aria-label="Page navigation example" class="">

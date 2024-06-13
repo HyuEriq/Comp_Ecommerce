@@ -307,14 +307,20 @@
                                 <span class="text-base md:text-lg font-bold text-slate-900">Rp.
                                     {{ number_format($produks->harga, 0, ',', '.') }}</span>
                             </p>
-                            <a href="#"
-                                class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                                Add cart</a>
+                            <form action="{{ route('Add.Shoping') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $produks->id }}">
+                                <input type="hidden" name="qty" value="1" min="1">
+                                <button type="submit"
+                                    class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                    Add Cart
+                                </button>
+                            </form>
                         </div>
                         <div>
                             <p class="text-sm pt-2 md:text-base text-slate-500 mb-3">{{ $produks->jumlah_beli }} Terjual
@@ -356,14 +362,20 @@
                                 <span class="text-base md:text-lg font-bold text-slate-900">Rp.
                                     {{ number_format($produks->harga, 0, ',', '.') }}</span>
                             </p>
-                            <a href="#"
-                                class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                                Add cart</a>
+                            <form action="{{ route('Add.Shoping') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $items->id }}">
+                                <input type="hidden" name="qty" value="1" min="1">
+                                <button type="submit"
+                                    class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                    Add Cart
+                                </button>
+                            </form>
                         </div>
                         <div class="flex justify-between gap-3">
                             <p class="text-sm pt-2 md:text-base text-slate-500 mb-3">{{ $produks->jumlah_beli }} Terjual

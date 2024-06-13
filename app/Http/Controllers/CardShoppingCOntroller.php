@@ -32,12 +32,23 @@ class CardShoppingCOntroller extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function redirecToCheckout(Request $request){
+        if(!isset($request->produk_id) || $request->qty[0] <= 0){
+                if($request->produk_id == null){
+                    return redirect()->back()->with('gagal','Pilih Produk Dulu');
+                }else{
+                    return redirect()->back()->with('gagal','Pilih Produk Dulu');
+
+                }
+
+        }
+
+        $data = [
+            'id_produk' => $request->produk_id[0],
+            'qty' => $request->qty[0]
+        ];
+
+        return redirect(route('Cekout.Index'))->with('data', $data);
     }
 
     /**
@@ -45,7 +56,16 @@ class CardShoppingCOntroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        $checkout = Checkout::create([
+            'user_id' => $user->id,
+            'produk_id' => $request->product_id,
+            'qty' => $request->qty,
+            'total' => $request->total
+        ]);
+
+        return redirect()->route('Cekout.Index')->with('success','Data Berhasil Di ChectOut');
     }
 
     /**
@@ -77,6 +97,12 @@ class CardShoppingCOntroller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        // Menghapus data cart berdasarkan user_id dan id cart yang diberikan
+        CartShopping::where('id', $id)->where('user_id', $user_id)->delete();
+
+        return back()->with('success', 'Data Cart Berhasil Di Hapus');
     }
 }

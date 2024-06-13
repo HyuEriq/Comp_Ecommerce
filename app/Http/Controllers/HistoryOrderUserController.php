@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TagihanModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HistoryOrderUserController extends Controller
 {
@@ -11,8 +13,18 @@ class HistoryOrderUserController extends Controller
      */
     public function index()
     {
+
+        $user = Auth::user();
+
+        $historyuser = TagihanModel::with('Produk')
+                        ->where('user_id', $user->id)
+                        ->where('status','selesai')
+                        ->latest()
+                        ->get();
+
         return view('Admin.Dashboard.User.dashboard.HistoryOrder',[
-            'tittle' => 'History Order User'
+            'tittle' => 'History Order User',
+            'historyuser' => $historyuser
         ]);
     }
 

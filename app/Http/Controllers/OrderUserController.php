@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TagihanModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderUserController extends Controller
 {
@@ -11,8 +13,21 @@ class OrderUserController extends Controller
      */
     public function index()
     {
-        return view('Admin.Dashboard.User.dashboard.OrderUser',[
-            'tittle' => 'Order User'
+        $user = Auth::user();
+        $query = TagihanModel::with('produk')
+                             ->where('user_id', $user->id);
+
+        if(request('status')) {
+            $query->where('status', request('status'));
+        }else{
+            $query->where('status','proses');
+        }
+
+        $tagihan = $query->latest()->get();
+
+        return view('Admin.Dashboard.User.dashboard.OrderUser', [
+            'tittle' => 'Order User',
+            'tagihan' => $tagihan
         ]);
     }
 

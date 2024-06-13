@@ -6,7 +6,7 @@
     <div class="flex-none w-full max-w-full px-3">
       <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
         <div class="flex justify-between p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-          <h6 class="dark:text-white">Slider table</h6>
+          <h6 class="dark:text-white">Table History Pembelian </h6>
           <div class="flex gap-3">
 
             <form class="max-w-md mx-auto">
@@ -34,52 +34,82 @@
         <div class="flex-auto px-0 pt-0 pb-2">
           <div class="p-0 overflow-x-auto">
             <table class="items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500">
-              <thead class="align-bottom">
-                <tr>
-                  <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">No</th>
-                  <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nama</th>
-                  <th class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nama Produk</th>
-                  <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Invoice</th>
-                  <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Jumlah</th>
-                  <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Harga</th>
-                  <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Tanggal</th>
-                  <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Status</th>
-                  <th class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Action</th>
-                </tr>
-              </thead>
+                <thead class="align-bottom">
+                    <tr>
+                        <th
+                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                            No</th>
+                        <th
+                            class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                            Gambar Produk</th>
+                        <th
+                            class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                            Nama Produk</th>
+                        <th
+                            class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                            Qty</th>
+                        <th
+                            class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                            Total</th>
+                         <th
+                            class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                            Tanggal</th>
+                        <th
+                            class="px-6 py-3 font-bold  text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                            Action</th>
+                    </tr>
+                </thead>
+
+              @foreach ($historyuser as $key => $items)
               <tbody>
                 <tr>
-                    <td class="py-4 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">1</p>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">M Hyueriq</p>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Computer core i3</p>
-                      </td>
-                      <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">9848487478</p>
-                      </td>
-                      <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">2</p>
-                      </td>
-                      <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">Rp. 5.000.000</p>
-                      </td>
-                      <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">17-12-2024</p>
-                      </td>
-                      <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 text-sm font-semibold leading-normal border py-1 px-3 border-gray-500 rounded-full text-center dark:text-white dark:opacity-60">Proccess</p>
-                      </td>
-                  <td class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                    <a href="javascript:;" class=" py-2 px-6 bg-blue-600 rounded-lg  hover:bg-blue-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Edit</a>
-                    <a href="javascript:;" class=" py-2 px-6 bg-red-600 rounded-lg  hover:bg-red-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Delete</a>
-                    <a href="" class=" py-2 px-6 bg-sky-600 rounded-lg  hover:bg-sky-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80"> Details</a>
-                  </td>
+                    <td
+                        class="py-4 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                        <p
+                            class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
+                            1</p>
+                    </td>
+                    <td
+                        class="py-4 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                        <img src="{{ asset('storage/produk/' . $items->Produk->foto_produk) }}"
+                            alt="" class="w-[100px]">
+                    </td>
+                    <td
+                        class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                        <p
+                            class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
+                            {{ $items->Produk->nama_Produk }}
+                        </p>
+                    </td>
+                    <td
+                        class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                        <p
+                            class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
+                            {{ $items->jumlah }}</p>
+                    </td>
+                    <td
+                        class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                        <p
+                            class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
+                            {{ $items->total }}</p>
+                    </td>
+                    <td
+                    class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                    <p
+                        class="mb-0 text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
+                        {{ date('Y-m-d' , strtotime($items->total)) }}</p>
+                     </td>
+
+                    <td
+                        class="pt-2 px-6 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                        <button type="submit"
+                        class="py-3 px-7 bg-blue-600 rounded-lg hover:bg-blue-700 text-xs text-white font-semibold leading-tight dark:text-white dark:opacity-80">Beli Lagi</button>
+                    </td>
                 </tr>
-              </tbody>
+            </tbody>
+              @endforeach
+
+
             </table>
 
             <nav aria-label="Page navigation example" class="">

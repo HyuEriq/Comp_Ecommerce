@@ -50,6 +50,7 @@ Route::get('/', function () {
     Route::get('/About', [AboutController::class, 'index'])->name('About.index');
 
     Route::get('/Produk/User', [ProdukUserController::class, 'index'])->name('produk.user');
+    Route::POST('Produk/User/AddCart', [ProdukUserController::class ,'addcart'])->name('produk.cart');
 
     Route::get('/Contact', [ContactController::class, 'index'])->name('Contact.index');
 
@@ -76,7 +77,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/Historyorder/user', [HistoryOrderUserController::class , 'index'])->name('History.Order');
     Route::get('/OrderUser', [OrderUserController::class, 'index'])->name('Order.User');
     Route::get('/CardShopping' , [CardShoppingCOntroller::class , 'index'])->name('Card.View');
+    Route::post('/redirect-to-checkout', [CardShoppingCOntroller::class, 'redirecToCheckout'])->name('toCheckout');
+    ROute::delete('/CartShopping/delete/{id}', [CardShoppingCOntroller::class, 'destroy'])->name('cart.delete');
     Route::get('/Cekout', [CekOutController::class , 'index'])->name('Cekout.Index');
+    Route::Post('/Cekout/Insert', [CekOutController::class , 'store'])->name('cekout.insert');
     Route::post('/addshopping', [HomeController::class , 'addcardshpping'])->name('Add.Shoping');
 
     Route::get('/Profil', [ProfilController::class, 'index'])->name('Profil.index');

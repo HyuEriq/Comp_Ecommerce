@@ -25,9 +25,8 @@
             <div class="kategori ">
                 @foreach ($kategori as $kategories)
                 <ul class="my-3 flex flex-row items-center gap-3">
-                    <input type="checkbox" name="checkbox" id="">
                     <li>
-                        <a href="#" class="text-base text-slate-700 font-medium ">{{ $kategories->nama_kategori }}</a>
+                        <a href="{{ route('produk.user', ['filter_produk' => $kategories->id]) }}" class="text-base text-slate-700 font-medium ">{{ $kategories->nama_kategori }}</a>
                     </li>
                 </ul>
                 <hr>
@@ -53,18 +52,19 @@
                         <form action="" method="get">
                             <input type="search" id="default-search"
                                 class="block w-96 py-4 ps-8 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="" name="search" value="" />
+                                placeholder="" name="search" value="{{ $request->search }}" />
                             <button type="submit"
                                 class="text-white  absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                         </form>
                     </div>
                 </form>
-                <form action="">
+                <form action="{{ route('produk.user')}}" method="GET">
                     <select name="filter" id="">
                         <option value="" selected>Pilih</option>
-                        <option value="">Terpopuler</option>
-                        <option value="">Terlaris</option>
+                        <option value="terpopuler" {{ Request::get('filter') == 'terpopuler' ? 'selected' : '' }} >Terpopuler</option>
+                        <option value="terlaris" {{ Request::get('filter') == 'terlaris' ? 'selected' : '' }} >Terlaris</option>
                     </select>
+                    <button type="submit">Filter</button>
                 </form>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -84,14 +84,20 @@
                                 <span class="text-base md:text-lg font-bold text-slate-900">Rp.
                                     {{ number_format($produks->harga, 0, ',', '.') }}</span>
                             </p>
-                            <a href="#"
+                            <form action="{{ route('produk.cart') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $produks->id }}">
+                                <input type="hidden" name="qty" value="1" min="1">
+
+                            <button type="submit"
                                 class="flex items-center rounded-md bg-slate-900 px-3 py-1.5 md:px-5 md:py-2.5 text-center text-xs md:text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
-                                Add cart</a>
+                                Add cart</button>
+                            </form>
                         </div>
                         <div class="flex justify-between gap-3">
                             <p class="text-sm pt-2 md:text-base text-slate-500 mb-3">{{ $produks->jumlah_beli }} Terjual
