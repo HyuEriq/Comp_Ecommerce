@@ -25,12 +25,12 @@ class OrderanController extends Controller
             });
         }
 
-        $data = $data->with('produk', 'user')->latest()->get();
+        $data = $data->with('produk', 'user')->latest()->paginate('4');
 
 
         return view('Admin.Dashboard.Orderan.orderan',[
             'tittle' => 'Orderan',
-            'datahistory' => $data,
+            'dataorderan' => $data,
             'request' => $request
         ]);
     }
@@ -72,7 +72,18 @@ class OrderanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'no_resi' => 'required|string|min:7',
+            'status' => 'required'
+        ]);
+
+        TagihanModel::find($id)->update($data,[
+            'no_resi' => $request->no_resi,
+            'status' => $request->status
+        ]);
+
+        return back()->with('success','Data Resi Pengiriman Dan Status Orderan Berhasil Di Input.....');
+
     }
 
     /**
@@ -80,6 +91,10 @@ class OrderanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = TagihanModel::find($id);
+
+        $data->delete();
+
+        return back()->with('success','Data Orderan Berhasil Di Hapus');
     }
 }

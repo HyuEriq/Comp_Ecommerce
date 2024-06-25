@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\ProdukModel;
+use App\Models\TagihanModel;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -16,11 +17,19 @@ class DashboardController extends Controller
         $jumlah_user = User::count();
         $jumlah_produk = ProdukModel::count();
         $jumlah_beli = ProdukModel::totalterjual();
+        $orderan = TagihanModel::with('Produk')
+                                ->where('status','proses')
+                                ->latest()
+                                ->get();
+
+
+
         return view('Admin.Dashboard.dashboard',[
             'tittle' => 'Dashboard',
             'jumlah_user' => $jumlah_user,
             'jumlah_produk' => $jumlah_produk,
-            'jumlah_beli' => $jumlah_beli
+            'jumlah_beli' => $jumlah_beli,
+            'orderan' => $orderan,
         ]);
     }
 

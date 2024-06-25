@@ -11,20 +11,33 @@ class HistoryOrderUserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(request $request)
     {
 
         $user = Auth::user();
 
-        $historyuser = TagihanModel::with('Produk')
-                        ->where('user_id', $user->id)
-                        ->where('status','selesai')
-                        ->latest()
-                        ->get();
+        $historyuser = TagihanModel::query();
+
+
+        if ($request->has('search') && $request->search != '') {
+            $historyuser->whereHas('produk', function($query) use ($request) {
+                $query->where('nama_Produk', 'LIKE', '%' . $request->search . '%');
+            });
+        }
+
+        $historyuser->with('Produk')
+                    ->where('user_id', $user->id)
+                    ->where('status','selesai')
+                    ->latest();
+
+        $historyuser = $historyuser->paginate(10);
+
+
 
         return view('Admin.Dashboard.User.dashboard.HistoryOrder',[
             'tittle' => 'History Order User',
-            'historyuser' => $historyuser
+            'historyuser' => $historyuser,
+            'request' => $request
         ]);
     }
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('no_telepon');
             $table->integer('zipcode');
+            $table->string('no_resi')->nullable;
             $table->integer('jumlah');
             $table->integer('total');
             $table->enum('status', ['proses','dikemas','dikirim','selesai']);

@@ -21,8 +21,21 @@ class RegistrasiController extends Controller
       $data = $request->validate([
           'name' => 'required|max:255',
           'email' => 'required|email|unique:users,email',
+          'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
           'password' => 'required|min:5|max:255',
       ]);
+
+      if ($request->hasFile('image')) {
+        // Simpan gambar yang diunggah
+        $file = $request->file('image');
+        $filename = uniqid(). '.' . $file->getClientOriginalExtension();
+        $file->storeAs('public/user/' . $filename);
+
+        $data['image'] = $filename;
+    } else {
+        // Gunakan gambar default jika tidak ada gambar yang diunggah
+        $data['image'] = 'defaul.png';
+    }
 
       $data['password'] = Hash::make($request->password);
 
@@ -30,6 +43,7 @@ class RegistrasiController extends Controller
           'name' => $data['name'],
           'email' => $data['email'],
           'password' => $data['password'],
+          'image' => $data['image'],
           'updated_at' => null
       ]);
 

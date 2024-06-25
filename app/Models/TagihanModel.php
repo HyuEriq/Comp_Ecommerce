@@ -14,7 +14,7 @@ class TagihanModel extends Model
 
     protected $table = 'tagihan';
 
-    protected $fillable = ['user_id','produk_id','nama_lengkap','pengiriman','alamat','no_telepon','zipcode','jumlah','total','status'];
+    protected $fillable = ['user_id','produk_id','nama_lengkap','pengiriman','alamat','no_telepon','zipcode','no_resi','jumlah','total','status'];
 
 
     public function Produk(): BelongsTo
@@ -25,6 +25,9 @@ class TagihanModel extends Model
     public function User(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+    public function transaksi(){
+        return $this->hasMany(TransaksiModel::class, 'tagihan_id', 'id');
     }
 
 }

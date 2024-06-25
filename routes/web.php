@@ -76,6 +76,8 @@ Route::middleware('auth')->group(function () {
     Route::get('Dashboard', [DashboardController::class ,'index'])->name('Dashboard');
     Route::get('/Historyorder/user', [HistoryOrderUserController::class , 'index'])->name('History.Order');
     Route::get('/OrderUser', [OrderUserController::class, 'index'])->name('Order.User');
+    Route::POST('/OrderUser/Update/{id}', [OrderUserController::class, 'update'])->name('OrderUser.Update');
+    Route::get('/OrderUser/payment/{id}', [OrderUserController::class, 'payment'])->name('Order.Payment');
     Route::get('/CardShopping' , [CardShoppingCOntroller::class , 'index'])->name('Card.View');
     Route::post('/redirect-to-checkout', [CardShoppingCOntroller::class, 'redirecToCheckout'])->name('toCheckout');
     ROute::delete('/CartShopping/delete/{id}', [CardShoppingCOntroller::class, 'destroy'])->name('cart.delete');
@@ -112,6 +114,8 @@ Route::middleware('admin')->group(function () {
     Route::PUT('/Dashboard/Contact/Update/{id}' , [ContactController::class , 'update'])->name('Contact.Update');
 
     Route::get('/orderan', [OrderanController::class , 'Index'])->name('Orderan.index');
+    Route::PUT('/Orderan/update/{id}', [OrderanController::class, 'update'])->name('Orderan.Update');
+    Route::DELETE('/Orderan/Delete/{id}', [OrderanController::class, 'destroy'])->name('Orderan.Destroy');
 
     //User
     Route::get('/User', [UserController::class, 'index'])->name('User.index');
