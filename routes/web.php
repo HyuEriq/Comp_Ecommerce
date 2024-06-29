@@ -66,6 +66,17 @@ Route::middleware('guest')->group(function () {
     Route::get('/registrasi', [RegistrasiController::class , 'index'])->name('registrasi');
     Route::post('/registrasi/Tambah', [RegistrasiController::class , 'registrasi_proses'])->name('Registrasi.Tambah');
 
+    Route::get('/forgot-password', [LoginController::class, 'resetpassword'])->name('pass.reset');
+    Route::post('/forgot-password/proses' , [Logincontroller::class , 'resetproses'])->name('reset.proses');
+
+    Route::get('/reset-password/{token}/{email}', [LoginController::class, 'resetpass'])->name('password.reset');
+    Route::post('/reset-password', [LoginController::class, 'resetpassproses'])->name('pass.reset.proses');
+
+    // Route::get('/reset-password/{token}', function (string $token) {
+    //     return 'hahahahhaha';
+    //     //return view('auth.reset-password', ['token' => $token]);
+    // })->name('password.reset');
+
 
 
 
